@@ -37,5 +37,9 @@ Ongoing failure to complete assigned tasks or repeated actions that delay team p
 By following this code of conduct, we aim to create a respectful, inclusive, and efficient working environment where every team member feels supported and valued.
 
 Signed:
+Nilay Oral Z23607537
+Matteo Organek ORG23613773
+Obaida Muqbel A00013570
+Oleksii Lvanov A00034498
 
 
