@@ -6,3 +6,7 @@ This separation improves maintainability and clarity while allowing each compone
 
 The current architecture provides a foundation that can be incrementally developed into a Clean Architecture in later sprints. 
 This approach supports scalability, modularity, and future extension of the system, including advanced comparison features and service-oriented components.
+
+## System Architecture
+
+![RASPO Architecture](docs/raspo-architecture-sprint1.png)
