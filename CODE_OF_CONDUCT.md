@@ -37,3 +37,5 @@ Ongoing failure to complete assigned tasks or repeated actions that delay team p
 By following this code of conduct, we aim to create a respectful, inclusive, and efficient working environment where every team member feels supported and valued.
 
 Signed:
+
+
