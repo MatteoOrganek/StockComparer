@@ -3,6 +3,9 @@ module owres.stockcomparer {
     requires javafx.fxml;
     requires javafx.web;
 
+    requires com.google.gson;
+    requires java.net.http;
+
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
