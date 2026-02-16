@@ -44,6 +44,6 @@ Matteo Organek ORG23613773
 
 Obaida Muqbel A00013570
 
-Oleksii Lvanov A00034498
+Oleksii Ivanov A00034498
 
 
