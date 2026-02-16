@@ -9,4 +9,5 @@ This approach supports scalability, modularity, and future extension of the syst
 
 ## System Architecture
 
+
 ![RASPO Architecture](docs/raspo-architecture-sprint1.png)
