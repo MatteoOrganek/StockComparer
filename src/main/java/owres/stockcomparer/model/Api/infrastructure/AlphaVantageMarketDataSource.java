@@ -1,11 +1,11 @@
-package infrastructure;
+package owres.stockcomparer.model.Api.infrastructure;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import domain.PricePoint;
-import domain.StockSeries;
-import service.MarketDataSource;
+import owres.stockcomparer.model.Api.domain.PricePoint;
+import owres.stockcomparer.model.Api.domain.StockSeries;
+import owres.stockcomparer.model.Api.service.MarketDataSource;
 
 import java.net.URI;
 import java.net.http.HttpClient;

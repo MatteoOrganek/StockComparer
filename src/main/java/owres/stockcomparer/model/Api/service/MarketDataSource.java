@@ -1,6 +1,6 @@
-package service;
+package owres.stockcomparer.model.Api.service;
 
-import domain.StockSeries;
+import owres.stockcomparer.model.Api.domain.StockSeries;
 import java.time.LocalDate;
 
 public interface MarketDataSource {

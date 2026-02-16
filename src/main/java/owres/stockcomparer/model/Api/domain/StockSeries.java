@@ -1,4 +1,4 @@
-package domain;
+package owres.stockcomparer.model.Api.domain;
 
 import java.util.List;
 

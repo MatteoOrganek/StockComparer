@@ -1,4 +1,4 @@
-package owres.stockcomparer.database;
+package owres.stockcomparer.model.database;
 
 /**
  * DatabaseController is responsible for handling

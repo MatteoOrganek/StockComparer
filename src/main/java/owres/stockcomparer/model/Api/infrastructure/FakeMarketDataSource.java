@@ -1,8 +1,8 @@
-package infrastructure;
+package owres.stockcomparer.model.Api.infrastructure;
 
-import service.MarketDataSource;
-import domain.PricePoint;
-import domain.StockSeries;
+import owres.stockcomparer.model.Api.service.MarketDataSource;
+import owres.stockcomparer.model.Api.domain.PricePoint;
+import owres.stockcomparer.model.Api.domain.StockSeries;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

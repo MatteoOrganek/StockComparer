@@ -1,4 +1,4 @@
-package owres.stockcomparer.currency;
+package owres.stockcomparer.model.currency;
 
 /**
  * CurrencyController defines how different currencies

@@ -1,6 +1,6 @@
-package service;
+package owres.stockcomparer.model.Api.service;
 
-import infrastructure.AlphaVantageMarketDataSource;
+import owres.stockcomparer.model.Api.infrastructure.AlphaVantageMarketDataSource;
 
 public class ServiceFactory {
 

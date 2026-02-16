@@ -5,7 +5,7 @@ The system separates concerns between the user interface, business logic, data r
 This separation improves maintainability and clarity while allowing each component to evolve independently.
 
 The current architecture provides a foundation that can be incrementally developed into a Clean Architecture in later sprints. 
-This approach supports scalability, modularity, and future extension of the system, including advanced comparison features and service-oriented components.
+This approach supports scalability, modularity, and future extension of the system, including advanced comparison features and owres.stockcomparer.model.Api.service-oriented components.
 
 ## System Architecture
 

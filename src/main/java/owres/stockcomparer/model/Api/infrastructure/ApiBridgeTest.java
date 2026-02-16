@@ -1,8 +1,8 @@
-package infrastructure;
+package owres.stockcomparer.model.Api.infrastructure;
 
-import domain.StockSeries;
-import service.ServiceFactory;
-import service.StockPriceService;
+import owres.stockcomparer.model.Api.domain.StockSeries;
+import owres.stockcomparer.model.Api.service.ServiceFactory;
+import owres.stockcomparer.model.Api.service.StockPriceService;
 
 import java.time.LocalDate;
 
