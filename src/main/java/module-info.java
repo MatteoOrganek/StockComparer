@@ -10,7 +10,12 @@ module owres.stockcomparer {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires javafx.graphics;
 
     opens owres.stockcomparer to javafx.fxml;
     exports owres.stockcomparer;
+    exports owres.stockcomparer.application;
+    opens owres.stockcomparer.application to javafx.fxml;
+    exports owres.stockcomparer.application.controller;
+    opens owres.stockcomparer.application.controller to javafx.fxml;
 }
