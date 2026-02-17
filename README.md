@@ -7,6 +7,11 @@ This separation improves maintainability and clarity while allowing each compone
 The current architecture provides a foundation that can be incrementally developed into a Clean Architecture in later sprints. 
 This approach supports scalability, modularity, and future extension of the system, including advanced comparison features and owres.stockcomparer.model.Api.service-oriented components.
 
+## Architecture (Sprint 1)
+This project follows simple architectural principles.
+Core responsibilities are separated into controllers (database, currency, chart metadata),
+which are currently implemented as abstract components and will be extended in later sprints.
+
 ## System Architecture
 
 
