@@ -3,10 +3,11 @@ package owres.stockcomparer.model.Api.infrastructure;
 import owres.stockcomparer.model.Api.domain.StockSeries;
 import owres.stockcomparer.model.Api.service.ServiceFactory;
 import owres.stockcomparer.model.Api.service.StockPriceService;
+import owres.stockcomparer.model.IDataProvider;
 
 import java.time.LocalDate;
 
-public class ApiBridgeTest {
+public class ApiBridge implements IDataProvider {
     public static void main(String[] args) {
         try {
             StockPriceService stockService = ServiceFactory.createStockPriceService();
@@ -22,5 +23,15 @@ public class ApiBridgeTest {
             System.out.println("FAILED: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String getData() {
+        return "Data from API";
+    }
+
+    @Override
+    public Boolean isAvailable() {
+        return null;
     }
 }

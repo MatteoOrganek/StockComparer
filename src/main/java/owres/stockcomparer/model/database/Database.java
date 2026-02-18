@@ -1,7 +1,9 @@
 package owres.stockcomparer.model.database;
 
+import owres.stockcomparer.model.IDataProvider;
+
 /**
- * DatabaseController is responsible for handling
+ * Database is responsible for handling
  * persistent storage of stock price data.
  *
  * This is an abstract placeholder implementation
@@ -9,9 +11,9 @@ package owres.stockcomparer.model.database;
  *
  * // NOTE: Actual database implementation will be added in Sprint 2
  */
-public class DatabaseController {
+public class Database implements IDataProvider {
 
-    public DatabaseController() {
+    public Database() {
         // Sprint 1: no database logic implemented
     }
 
@@ -19,8 +21,14 @@ public class DatabaseController {
         // Placeholder method for saving stock data
     }
 
-    public void loadStockData() {
-        // Placeholder method for loading stock data
+    @Override
+    public String getData() {
+        return "";
+    }
+
+    @Override
+    public Boolean isAvailable() {
+        return null;
     }
 }
 

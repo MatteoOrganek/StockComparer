@@ -10,7 +10,7 @@ package owres.stockcomparer.model.currency;
  * NOTE: Actual currency conversion implementation
  * will be added in Sprint 2.
  */
-public class CurrencyController {
+public class Currency {
 
     public enum SupportedCurrency {
         GBP,

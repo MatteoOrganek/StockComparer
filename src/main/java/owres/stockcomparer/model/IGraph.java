@@ -1,5 +1,5 @@
 package owres.stockcomparer.model;
 
-public interface IGraph {
-    
+public interface IGraph{
+    String getJSON();
 }

@@ -1,4 +1,4 @@
-package owres.stockcomparer.model.Api.service;
+package owres.stockcomparer.model.graph;
 
 import java.util.ArrayList;
 import java.util.Collections;
