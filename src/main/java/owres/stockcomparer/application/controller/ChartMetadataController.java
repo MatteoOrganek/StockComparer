@@ -1,4 +1,4 @@
-package owres.stockcomparer.model.graph;
+package owres.stockcomparer.application.controller;
 
 /**
  * Handles labels and legends for stock comparison charts.

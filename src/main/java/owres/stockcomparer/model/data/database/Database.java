@@ -1,6 +1,6 @@
-package owres.stockcomparer.model.database;
+package owres.stockcomparer.model.data.database;
 
-import owres.stockcomparer.model.IDataProvider;
+import owres.stockcomparer.model.data.IDataProvider;
 
 /**
  * Database is responsible for handling
@@ -28,7 +28,7 @@ public class Database implements IDataProvider {
 
     @Override
     public Boolean isAvailable() {
-        return null;
+        return false;
     }
 }
 

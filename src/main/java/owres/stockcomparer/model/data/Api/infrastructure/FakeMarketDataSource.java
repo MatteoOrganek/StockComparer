@@ -1,14 +1,14 @@
-package owres.stockcomparer.model.Api.infrastructure;
+package owres.stockcomparer.model.data.Api.infrastructure;
 
-import owres.stockcomparer.model.Api.service.MarketDataSource;
-import owres.stockcomparer.model.Api.domain.PricePoint;
-import owres.stockcomparer.model.Api.domain.StockSeries;
+import owres.stockcomparer.model.data.Api.service.IMarketDataSource;
+import owres.stockcomparer.model.data.Api.domain.PricePoint;
+import owres.stockcomparer.model.data.Api.domain.StockSeries;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FakeMarketDataSource implements MarketDataSource {
+public class FakeMarketDataSource implements IMarketDataSource {
 
     @Override
     public StockSeries fetchDailyCloses(String symbol, LocalDate from, LocalDate to) {

@@ -1,11 +1,11 @@
-package owres.stockcomparer.model.Api.infrastructure;
+package owres.stockcomparer.model.data.Api.infrastructure;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import owres.stockcomparer.model.Api.domain.PricePoint;
-import owres.stockcomparer.model.Api.domain.StockSeries;
-import owres.stockcomparer.model.Api.service.MarketDataSource;
+import owres.stockcomparer.model.data.Api.domain.PricePoint;
+import owres.stockcomparer.model.data.Api.domain.StockSeries;
+import owres.stockcomparer.model.data.Api.service.IMarketDataSource;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -17,7 +17,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class AlphaVantageMarketDataSource implements MarketDataSource {
+public class AlphaVantageMarketDataSource implements IMarketDataSource {
 
     private final String apiKey;
     private final HttpClient http = HttpClient.newHttpClient();

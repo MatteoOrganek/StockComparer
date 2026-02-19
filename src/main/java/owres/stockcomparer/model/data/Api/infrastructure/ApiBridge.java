@@ -1,9 +1,9 @@
-package owres.stockcomparer.model.Api.infrastructure;
+package owres.stockcomparer.model.data.Api.infrastructure;
 
-import owres.stockcomparer.model.Api.domain.StockSeries;
-import owres.stockcomparer.model.Api.service.ServiceFactory;
-import owres.stockcomparer.model.Api.service.StockPriceService;
-import owres.stockcomparer.model.IDataProvider;
+import owres.stockcomparer.model.data.Api.domain.StockSeries;
+import owres.stockcomparer.model.data.Api.service.ServiceFactory;
+import owres.stockcomparer.model.data.Api.service.StockPriceService;
+import owres.stockcomparer.model.data.IDataProvider;
 
 import java.time.LocalDate;
 
@@ -32,6 +32,6 @@ public class ApiBridge implements IDataProvider {
 
     @Override
     public Boolean isAvailable() {
-        return null;
+        return true;
     }
 }

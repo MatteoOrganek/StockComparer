@@ -5,12 +5,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import owres.stockcomparer.model.IGraph;
 import owres.stockcomparer.model.graph.Graph;
+import owres.stockcomparer.model.graph.IGraph;
 
+/**
+ * Controller handling graph-view calls
+ */
 public class GraphController {
 
-    Graph graph;
+    // Graph instance
+    IGraph graph;
 
     @FXML
     public Pane canvas;
@@ -49,8 +53,8 @@ public class GraphController {
 
         // Based on the JSON data the program will create a graph out of it, translating prices into points in a canvas
 
-        // Remove any lines in canvas
-        clearLines();
+        // Remove any children in canvas
+        clearCanvas();
 
         // Mock up a base shape to check for resize functionality
         double width = canvas.getWidth();
@@ -69,10 +73,18 @@ public class GraphController {
 
     }
 
+    public void drawCandlesticks() {
+
+        // Fetch JSON data
+        String JSONData = graph.getJSON();
+
+        // To be implemented in the next few sprints
+    }
+
     /**
      * This function deletes recursively all children in the canvas
      */
-    public void clearLines() {
+    public void clearCanvas() {
         canvas.getChildren().clear();
     }
 }

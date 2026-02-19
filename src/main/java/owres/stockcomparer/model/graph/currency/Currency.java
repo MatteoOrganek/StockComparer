@@ -1,4 +1,4 @@
-package owres.stockcomparer.model.currency;
+package owres.stockcomparer.model.graph.currency;
 
 /**
  * CurrencyController defines how different currencies
@@ -26,4 +26,6 @@ public class Currency {
         // Placeholder for currency conversion logic
         return price;
     }
+
 }
+

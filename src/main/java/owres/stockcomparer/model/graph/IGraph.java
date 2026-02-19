@@ -1,4 +1,4 @@
-package owres.stockcomparer.model;
+package owres.stockcomparer.model.graph;
 
 public interface IGraph{
     String getJSON();
