@@ -11,6 +11,8 @@ public class PricePoint {
         this.close = close;
     }
 
-    public LocalDate getDate() { return date; }
-    public double getClose() { return close; }
+    public LocalDate getDate() {
+        return date; }
+    public double getClose() {
+        return close; }
 }
