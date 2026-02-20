@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-
 /*
  * This class connects to the Alpha Vantage API.
  * It sends an HTTP request, receives JSON data,
