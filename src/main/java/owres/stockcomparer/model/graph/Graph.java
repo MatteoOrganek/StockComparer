@@ -3,7 +3,6 @@ package owres.stockcomparer.model.graph;
 import owres.stockcomparer.model.data.Api.infrastructure.ApiBridge;
 import owres.stockcomparer.model.data.IDataProvider;
 import owres.stockcomparer.model.data.database.Database;
-import owres.stockcomparer.model.graph.currency.Currency;
 
 
 /**
@@ -14,11 +13,20 @@ public class Graph implements IGraph {
     // Thanks to the Laws of Substitutability, dataProvider can become a database or API instance
     IDataProvider dataProvider;
 
-    Currency currency;
+    IInteraction interaction;
+
+    IIndicator indicator;
 
     String data;
 
-    public String getJSON() {
+    // Default constructor
+    public Graph() {}
+
+    // Constructor with defined stock
+    public Graph(String stockName) {}
+
+    // TODO Output to be changed to JSON
+    public String getData() {
 
         // Get database class
         System.out.println("Using Database...");

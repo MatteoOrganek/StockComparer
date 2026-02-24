@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class WatchlistService {
+public class Watchlist implements IWatchList{
 
     private final List<String> symbols = new ArrayList<>();
 
@@ -27,3 +27,4 @@ public class WatchlistService {
         return symbols.contains(symbol.toUpperCase().trim());
     }
 }
+

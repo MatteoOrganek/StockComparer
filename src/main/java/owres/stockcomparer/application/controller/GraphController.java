@@ -11,7 +11,7 @@ import owres.stockcomparer.model.graph.IGraph;
 /**
  * Controller handling graph-view calls
  */
-public class GraphController {
+public class GraphController implements IGraphController {
 
     // Graph instance
     IGraph graph;
@@ -28,6 +28,9 @@ public class GraphController {
 
         // Instantiate Graph
         graph = new Graph();
+
+        // Fetch JSON data
+        String data = graph.getData();
 
         // Draw default lines
         drawLine();
@@ -47,9 +50,6 @@ public class GraphController {
      * This function is able to draw lines on a canvas based on the JSON input from graph
      */
     public void drawLine() {
-
-        // Fetch JSON data
-        String JSONData = graph.getJSON();
 
         // Based on the JSON data the program will create a graph out of it, translating prices into points in a canvas
 
@@ -76,7 +76,7 @@ public class GraphController {
     public void drawCandlesticks() {
 
         // Fetch JSON data
-        String JSONData = graph.getJSON();
+        String JSONData = graph.getData();
 
         // To be implemented in the next few sprints
     }
@@ -87,4 +87,13 @@ public class GraphController {
     public void clearCanvas() {
         canvas.getChildren().clear();
     }
+
+    @Override
+    public void renderGraph(IGraph graph) {
+
+        // Fetch JSON data
+        String data = graph.getData();
+        drawLine();
+    }
 }
+
