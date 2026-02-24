@@ -1,4 +1,4 @@
-package owres.stockcomparer.model.graph;
+package owres.stockcomparer.application.controller;
 
 /**
  * Handles labels and legends for stock comparison charts.
@@ -10,6 +10,8 @@ package owres.stockcomparer.model.graph;
  * will be implemented in Sprint 2.
  */
 public class ChartMetadataController {
+
+    IGraphController iGraphController;
 
     /**
      * Defines axis labels for the chart.

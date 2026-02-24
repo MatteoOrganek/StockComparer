@@ -5,9 +5,14 @@ The system separates concerns between the user interface, business logic, data r
 This separation improves maintainability and clarity while allowing each component to evolve independently.
 
 The current architecture provides a foundation that can be incrementally developed into a Clean Architecture in later sprints. 
-This approach supports scalability, modularity, and future extension of the system, including advanced comparison features and owres.stockcomparer.model.Api.service-oriented components.
+This approach supports scalability, modularity, and future extension of the system, including advanced comparison features and owres.stockcomparer.model.data.Api.service-oriented components.
 
-## System Architecture
+## Architecture (Sprint 1)
+This project follows simple architectural principles.
+Core responsibilities are separated into controllers (database, currency, chart metadata),
+which are currently implemented as abstract components and will be extended in later sprints.
+
+## Simple System Architecture
 
 
-![RASPO Architecture](docs/raspo-architecture-sprint1.png)
+![Simple Architecture](docs/ComponentSpecificationDiagramS1.png)

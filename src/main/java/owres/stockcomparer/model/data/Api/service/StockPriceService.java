@@ -1,6 +1,6 @@
-package owres.stockcomparer.model.Api.service;
+package owres.stockcomparer.model.data.Api.service;
 
-import owres.stockcomparer.model.Api.domain.StockSeries;
+import owres.stockcomparer.model.data.Api.domain.StockSeries;
 
 import java.time.LocalDate;
 
@@ -11,9 +11,9 @@ import java.time.LocalDate;
  */
 public class StockPriceService {
 
-    private final MarketDataSource dataSource;
+    private final IMarketDataSource dataSource;
 
-    public StockPriceService(MarketDataSource dataSource) {
+    public StockPriceService(IMarketDataSource dataSource) {
         this.dataSource = dataSource;
     }
 

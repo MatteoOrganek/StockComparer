@@ -1,10 +1,9 @@
-package owres.stockcomparer.model;
+package owres.stockcomparer.model.data;
 
-public interface IData {
+public interface IDataProvider {
 
     // The function getData will return a JSON formatted string composed of stock data.
     String getData();
     Boolean isAvailable();
-    private String fetchData() { return null; }
 
 }
