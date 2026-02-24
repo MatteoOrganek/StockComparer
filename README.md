@@ -12,7 +12,7 @@ This project follows simple architectural principles.
 Core responsibilities are separated into controllers (database, currency, chart metadata),
 which are currently implemented as abstract components and will be extended in later sprints.
 
-## System Architecture
+## Simple System Architecture
 
 
-![RASPO Architecture](docs/raspo-architecture-sprint1.png)
+![Simple Architecture](docs/ComponentSpecificationDiagramS1.png)

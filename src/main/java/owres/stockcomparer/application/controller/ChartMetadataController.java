@@ -11,6 +11,8 @@ package owres.stockcomparer.application.controller;
  */
 public class ChartMetadataController {
 
+    IGraphController iGraphController;
+
     /**
      * Defines axis labels for the chart.
      * Example: X-axis = Date, Y-axis = Price
