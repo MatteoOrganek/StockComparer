@@ -1,6 +1,6 @@
 package owres.stockcomparer.model.graph;
 
-import owres.stockcomparer.model.data.Api.infrastructure.ApiBridge;
+import owres.stockcomparer.model.data.Api.ApiBridge;
 import owres.stockcomparer.model.data.IDataProvider;
 import owres.stockcomparer.model.data.database.Database;
 
