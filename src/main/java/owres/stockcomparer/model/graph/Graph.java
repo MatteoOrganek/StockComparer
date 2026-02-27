@@ -37,7 +37,7 @@ public class Graph implements IGraph {
 
         // If the database does not have the correct data, dataProvider is switched to APIBridge
         if (data == null) {
-            System.out.println("Switching to ApiBridge...");
+            System.out.println("Switching to Api...");
             dataProvider = new ApiBridge();
             System.out.println("Getting data from ApiBridge...");
             data = tryFetchData(dataProvider);

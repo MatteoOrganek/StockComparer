@@ -15,6 +15,7 @@ module owres.stockcomparer {
     requires com.almasb.fxgl.all;
     requires javafx.graphics;
     requires com.fasterxml.jackson.databind;
+    requires owres.stockcomparer;
 
     opens owres.stockcomparer to javafx.fxml;
     exports owres.stockcomparer;

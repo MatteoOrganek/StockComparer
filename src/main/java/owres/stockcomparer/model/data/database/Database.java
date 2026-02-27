@@ -1,6 +1,7 @@
 package owres.stockcomparer.model.data.database;
 
 import owres.stockcomparer.model.data.IDataProvider;
+import owres.stockcomparer.model.data.IStockData;
 
 /**
  * Database is responsible for handling
@@ -12,6 +13,8 @@ import owres.stockcomparer.model.data.IDataProvider;
  * // NOTE: Actual database implementation will be added in Sprint 2
  */
 public class Database implements IDataProvider {
+
+    IStockData stockData;
 
     public Database() {
         // Sprint 1: no database logic implemented
