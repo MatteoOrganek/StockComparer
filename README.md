@@ -16,3 +16,9 @@ which are currently implemented as abstract components and will be extended in l
 
 
 ![Simple Architecture](docs/ComponentSpecificationDiagramS1.png)
+
+## System Diagram
+![System Diagram](./diagrams/system-diagram.png)
+
+## Initial System Architecture
+![Architecture](./diagrams/initial-architecture.png)
