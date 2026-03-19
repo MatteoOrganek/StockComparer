@@ -7,6 +7,11 @@ import java.time.LocalDate;
  */
 public class StockExchange implements IMarketDataSource {
 
+    private String exchangeName;
+    private String exchangeCode;
+
+    public StockExchange(String exchangeName, String exchangeCode) {
+    }
 
     @Override
     public StockPriceDataSource fetchDailyCloses(String symbol, LocalDate from, LocalDate to) throws Exception {

@@ -6,13 +6,14 @@ import owres.stockcomparer.model.data.PriceEntry;
 import owres.stockcomparer.model.data.Stock;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ApiBridge implements IDataProvider {
 
     IMarketDataSource marketDataSource;
 
     @Override
-    public PriceEntry getData(Stock stock, LocalDateTime startTime, LocalDateTime endTime) {
+    public List<PriceEntry> getData(Stock stock, LocalDateTime startTime, LocalDateTime endTime) {
         return null;
     }
 

@@ -9,10 +9,10 @@ public class PriceEntry {
     private double closePrice;
     private double highPrice;
     private double lowPrice;
-    private int volume;
+    private long volume;
     private Currency currency;
 
-    public PriceEntry(LocalDateTime time, double openPrice, double closePrice, double highPrice, double lowPrice, int volume, Currency currency) {
+    public PriceEntry(LocalDateTime time, double openPrice, double closePrice, double highPrice, double lowPrice, long volume) {
         this.time = time;
         this.openPrice = openPrice;
         this.closePrice = closePrice;
@@ -62,11 +62,11 @@ public class PriceEntry {
         this.lowPrice = lowPrice;
     }
 
-    public int getVolume() {
+    public long getVolume() {
         return volume;
     }
 
-    public void setVolume(int volume) {
+    public void setVolume(long volume) {
         this.volume = volume;
     }
 

@@ -15,6 +15,8 @@ module owres.stockcomparer {
     requires com.almasb.fxgl.all;
     requires javafx.graphics;
     requires com.fasterxml.jackson.databind;
+    requires java.logging;
+    requires YahooFinanceAPI;
 
     opens owres.stockcomparer to javafx.fxml;
     exports owres.stockcomparer;

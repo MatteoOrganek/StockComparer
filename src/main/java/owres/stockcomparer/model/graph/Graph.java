@@ -8,6 +8,7 @@ import owres.stockcomparer.model.data.Stock;
 import owres.stockcomparer.model.data.database.Database;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 /**
@@ -24,7 +25,7 @@ public class Graph implements IGraph {
 
     IProfile profile;
 
-    PriceEntry data;
+    List<PriceEntry> data;
 
     Stock stock = new Stock("TSLA", "Tesla", new Company("Tesla"));
 
@@ -34,7 +35,7 @@ public class Graph implements IGraph {
     // Constructor with defined stock
     public Graph(String stockName) {}
 
-    public PriceEntry getData() {
+    public List<PriceEntry> getData() {
 
         // Get database class
         System.out.println("Using Database...");
@@ -61,7 +62,7 @@ public class Graph implements IGraph {
         return data;
     }
 
-    private PriceEntry tryFetchData(IDataProvider dataProvider) {
+    private List<PriceEntry> tryFetchData(IDataProvider dataProvider) {
         if (dataProvider.isAvailable(stock)){
             // Get data if available
             return dataProvider.getData(stock, LocalDateTime.now(), LocalDateTime.now());

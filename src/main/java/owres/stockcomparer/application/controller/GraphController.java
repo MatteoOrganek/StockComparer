@@ -10,6 +10,8 @@ import owres.stockcomparer.model.graph.Graph;
 import owres.stockcomparer.model.graph.IGraph;
 import owres.stockcomparer.model.graph.Profile;
 
+import java.util.List;
+
 /**
  * Controller handling graph-view calls
  */
@@ -31,8 +33,9 @@ public class GraphController implements IGraphController {
         // Instantiate Graph
         graph = new Graph();
 
+
         // Fetch JSON data
-        PriceEntry data = graph.getData();
+        List<PriceEntry> data = graph.getData();
 
         // Draw default lines
         drawLine();
@@ -78,7 +81,7 @@ public class GraphController implements IGraphController {
     public void drawCandlesticks() {
 
         // Fetch data
-        PriceEntry Data = graph.getData();
+        List<PriceEntry> data = graph.getData();
 
         // To be implemented in the next few sprints
     }
@@ -93,8 +96,8 @@ public class GraphController implements IGraphController {
     @Override
     public void renderGraph(IGraph graph) {
 
-        // Fetch JSON data
-        PriceEntry data = graph.getData();
+        // Fetch data
+        List<PriceEntry> data = graph.getData();
         drawLine();
     }
 }

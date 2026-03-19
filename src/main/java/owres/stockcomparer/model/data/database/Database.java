@@ -6,6 +6,7 @@ import owres.stockcomparer.model.data.PriceEntry;
 import owres.stockcomparer.model.data.Stock;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Database is responsible for handling
@@ -27,7 +28,7 @@ public class Database implements IDataProvider {
     }
 
     @Override
-    public PriceEntry getData(Stock stock, LocalDateTime startTime, LocalDateTime endTime) {
+    public List<PriceEntry> getData(Stock stock, LocalDateTime startTime, LocalDateTime endTime) {
         return null;
     }
 
