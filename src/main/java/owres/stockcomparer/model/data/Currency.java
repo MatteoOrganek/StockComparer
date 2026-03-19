@@ -1,4 +1,5 @@
 package owres.stockcomparer.model.data;
 
-public interface IProfile {
+public enum Currency {
+    USD, GBP, EUR
 }

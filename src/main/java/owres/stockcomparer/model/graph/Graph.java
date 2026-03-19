@@ -1,9 +1,13 @@
 package owres.stockcomparer.model.graph;
 
 import owres.stockcomparer.model.data.Api.ApiBridge;
+import owres.stockcomparer.model.data.Company;
 import owres.stockcomparer.model.data.IDataProvider;
-import owres.stockcomparer.model.data.IProfile;
+import owres.stockcomparer.model.data.PriceEntry;
+import owres.stockcomparer.model.data.Stock;
 import owres.stockcomparer.model.data.database.Database;
+
+import java.time.LocalDateTime;
 
 
 /**
@@ -20,7 +24,9 @@ public class Graph implements IGraph {
 
     IProfile profile;
 
-    String data;
+    PriceEntry data;
+
+    Stock stock = new Stock("TSLA", "Tesla", new Company("Tesla"));
 
     // Default constructor
     public Graph() {}
@@ -28,8 +34,7 @@ public class Graph implements IGraph {
     // Constructor with defined stock
     public Graph(String stockName) {}
 
-    // TODO Output to be changed to JSON
-    public String getData() {
+    public PriceEntry getData() {
 
         // Get database class
         System.out.println("Using Database...");
@@ -52,15 +57,14 @@ public class Graph implements IGraph {
             System.out.println("Suitable data found.");
         }
         // Translate the data to be read by GraphController
-        String translatedData = data;
 
-        return translatedData;
+        return data;
     }
 
-    private String tryFetchData(IDataProvider dataProvider) {
-        if (dataProvider.isAvailable()){
+    private PriceEntry tryFetchData(IDataProvider dataProvider) {
+        if (dataProvider.isAvailable(stock)){
             // Get data if available
-            return dataProvider.getData();
+            return dataProvider.getData(stock, LocalDateTime.now(), LocalDateTime.now());
         } else {
             System.out.println("Data not found for " + dataProvider.getClass().getSimpleName());
             return null;

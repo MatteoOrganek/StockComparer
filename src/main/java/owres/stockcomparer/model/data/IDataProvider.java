@@ -1,9 +1,12 @@
 package owres.stockcomparer.model.data;
 
+import owres.stockcomparer.model.data.Api.StockExchange;
+
+import java.time.LocalDateTime;
+
 public interface IDataProvider {
 
-    // The function getData will return a JSON formatted string composed of stock data.
-    String getData();
-    Boolean isAvailable();
-
+    PriceEntry getData(Stock stock, LocalDateTime startTime, LocalDateTime endTime);
+    Boolean isAvailable(Stock stock);
+    StockExchange getExchangeForStock(Stock stock);
 }

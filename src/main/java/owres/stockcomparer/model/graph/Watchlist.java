@@ -1,22 +1,23 @@
 package owres.stockcomparer.model.graph;
 
+
+
+import owres.stockcomparer.model.data.Stock;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Watchlist implements IWatchList{
 
-    private final List<String> symbols = new ArrayList<>();
+    private final List<Stock> symbols = new ArrayList<Stock>();
 
-    public List<String> getAll() {
+    public List<Stock> getAll() {
         return Collections.unmodifiableList(symbols);
     }
 
-    public void add(String symbol) {
-        symbol = symbol.toUpperCase().trim();
-        if (!symbol.isBlank() && !symbols.contains(symbol)) {
-            symbols.add(symbol);
-        }
+    public void add(Stock symbol) {
+        symbols.add(symbol);
     }
 
     public void remove(String symbol) {

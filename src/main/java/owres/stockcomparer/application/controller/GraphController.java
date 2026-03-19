@@ -5,8 +5,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import owres.stockcomparer.model.data.PriceEntry;
 import owres.stockcomparer.model.graph.Graph;
 import owres.stockcomparer.model.graph.IGraph;
+import owres.stockcomparer.model.graph.Profile;
 
 /**
  * Controller handling graph-view calls
@@ -30,7 +32,7 @@ public class GraphController implements IGraphController {
         graph = new Graph();
 
         // Fetch JSON data
-        String data = graph.getData();
+        PriceEntry data = graph.getData();
 
         // Draw default lines
         drawLine();
@@ -75,8 +77,8 @@ public class GraphController implements IGraphController {
 
     public void drawCandlesticks() {
 
-        // Fetch JSON data
-        String JSONData = graph.getData();
+        // Fetch data
+        PriceEntry Data = graph.getData();
 
         // To be implemented in the next few sprints
     }
@@ -92,7 +94,7 @@ public class GraphController implements IGraphController {
     public void renderGraph(IGraph graph) {
 
         // Fetch JSON data
-        String data = graph.getData();
+        PriceEntry data = graph.getData();
         drawLine();
     }
 }
