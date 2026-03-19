@@ -2,6 +2,7 @@ package owres.stockcomparer.model.graph;
 
 import owres.stockcomparer.model.data.Api.ApiBridge;
 import owres.stockcomparer.model.data.IDataProvider;
+import owres.stockcomparer.model.data.IProfile;
 import owres.stockcomparer.model.data.database.Database;
 
 
@@ -16,6 +17,8 @@ public class Graph implements IGraph {
     IInteraction interaction;
 
     IIndicator indicator;
+
+    IProfile profile;
 
     String data;
 

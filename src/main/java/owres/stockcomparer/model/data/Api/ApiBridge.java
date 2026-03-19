@@ -12,11 +12,11 @@ public class ApiBridge implements IDataProvider {
 
     @Override
     public String getData() {
-        return "";
+        return "Data from API";
     }
 
     @Override
     public Boolean isAvailable() {
-        return null;
+        return true;
     }
 }
