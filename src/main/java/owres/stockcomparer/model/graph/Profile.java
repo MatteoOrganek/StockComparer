@@ -1,5 +1,9 @@
 package owres.stockcomparer.model.graph;
 
+
+/**
+ * This class keeps track of the current user's name, email, watchlist, and current indicator personalized for the user
+ */
 public class Profile implements IProfile {
     IProfile profile;
 
@@ -8,6 +12,15 @@ public class Profile implements IProfile {
     private Watchlist watchlist;
     private Indicator indicator;
 
+
+    /**
+     * Basic Constructor
+     * @param profile Profile
+     * @param name Name
+     * @param email Email
+     * @param watchlist Watchlist
+     * @param indicator Indicator
+     */
     public Profile(IProfile profile, String name, String email, Watchlist watchlist, Indicator indicator) {
         this.profile = profile;
         this.name = name;

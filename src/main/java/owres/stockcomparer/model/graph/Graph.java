@@ -29,11 +29,18 @@ public class Graph implements IGraph {
 
     Stock stock = new Stock("TSLA", "Tesla", new Company("Tesla"));
 
-    // Default constructor
+    // Empty constructor
     public Graph() {}
 
-    // Constructor with defined stock
-    public Graph(String stockName) {}
+    // Default constructor
+    public Graph(IDataProvider dataProvider, IInteraction interaction, IIndicator indicator, IProfile profile, List<PriceEntry> data, Stock stock) {
+        this.dataProvider = dataProvider;
+        this.interaction = interaction;
+        this.indicator = indicator;
+        this.profile = profile;
+        this.data = data;
+        this.stock = stock;
+    }
 
     public List<PriceEntry> getData() {
 

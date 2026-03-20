@@ -6,10 +6,13 @@ public class Interaction implements IInteraction {
 
     IGraphController iGraphController;
 
+    public Interaction(IGraphController iGraphController) {
+        this.iGraphController = iGraphController;
+    }
 
     @Override
     public void changeStock(String newStock) {
-        IGraph newGraph = new Graph(newStock);
+        IGraph newGraph = new Graph();
         iGraphController.renderGraph(newGraph);
     }
 

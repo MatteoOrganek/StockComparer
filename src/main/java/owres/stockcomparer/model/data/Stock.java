@@ -1,5 +1,8 @@
 package owres.stockcomparer.model.data;
 
+/**
+ * This class creates a stock objects defined by its symbol, name, company
+ */
 public class Stock implements IStock {
 
     private String symbol;

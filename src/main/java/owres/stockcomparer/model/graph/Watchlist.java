@@ -10,6 +10,8 @@ import java.util.List;
 
 public class Watchlist implements IWatchList{
 
+    public Watchlist() {}
+
     private final List<Stock> symbols = new ArrayList<Stock>();
 
     public List<Stock> getAll() {

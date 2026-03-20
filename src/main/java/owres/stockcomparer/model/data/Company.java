@@ -1,5 +1,8 @@
 package owres.stockcomparer.model.data;
 
+/**
+ * This class defines a company
+ */
 public class Company {
     private String name;
 

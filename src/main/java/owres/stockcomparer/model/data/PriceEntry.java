@@ -2,6 +2,9 @@ package owres.stockcomparer.model.data;
 
 import java.time.LocalDateTime;
 
+/**
+ * This class creates an instance of price entry, used to track open/close, high/low prices based on a specific time.
+ */
 public class PriceEntry {
 
     private LocalDateTime time;
@@ -12,6 +15,15 @@ public class PriceEntry {
     private long volume;
     private Currency currency;
 
+    /**
+     * Base constructor
+     * @param time Time
+     * @param openPrice OpenPrice
+     * @param closePrice ClosePrice
+     * @param highPrice HighPrice
+     * @param lowPrice LowPrice
+     * @param volume Volume
+     */
     public PriceEntry(LocalDateTime time, double openPrice, double closePrice, double highPrice, double lowPrice, long volume) {
         this.time = time;
         this.openPrice = openPrice;
@@ -19,7 +31,6 @@ public class PriceEntry {
         this.highPrice = highPrice;
         this.lowPrice = lowPrice;
         this.volume = volume;
-        this.currency = currency;
     }
 
     public LocalDateTime getTime() {

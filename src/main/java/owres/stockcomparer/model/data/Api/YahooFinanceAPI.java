@@ -1,5 +1,6 @@
 package owres.stockcomparer.model.data.Api;
 
+import owres.stockcomparer.model.data.Currency;
 import owres.stockcomparer.model.data.IDataProvider;
 import owres.stockcomparer.model.data.PriceEntry;
 import owres.stockcomparer.model.data.Stock;
@@ -16,6 +17,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * This class retrieves data from the YahooFinance API
+ */
 public class YahooFinanceAPI implements IDataProvider {
 
     private static final Logger LOGGER = Logger.getLogger(YahooFinanceAPI.class.getName());
