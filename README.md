@@ -1,4 +1,4 @@
-## Architecture Overview (Sprint 1)
+
 
 The StockComparer application is designed using a simple, component-based architecture. 
 The system separates concerns between the user interface, business logic, data retrieval, and data storage components. 
