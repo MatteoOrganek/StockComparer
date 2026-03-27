@@ -13,7 +13,7 @@ public class Interaction implements IInteraction {
     @Override
     public void changeStock(String newStock) {
         IGraph newGraph = new Graph();
-        iGraphController.renderGraph(newGraph);
+        iGraphController.updateGraph(newGraph);
     }
 
     @Override

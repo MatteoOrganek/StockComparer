@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import owres.stockcomparer.model.data.PriceEntry;
+import owres.stockcomparer.model.data.Stock;
 import owres.stockcomparer.model.graph.Graph;
 import owres.stockcomparer.model.graph.IGraph;
 import owres.stockcomparer.model.graph.Profile;
@@ -94,11 +95,21 @@ public class GraphController implements IGraphController {
     }
 
     @Override
-    public void renderGraph(IGraph graph) {
+    public void updateGraph(IGraph graph) {
 
         // Fetch data
         List<PriceEntry> data = graph.getData();
         drawLine();
+    }
+
+    @Override
+    public List<Stock> searchStock(String stock) {
+        return List.of();
+    }
+
+    @Override
+    public void selectStock(Stock stock) {
+
     }
 }
 
