@@ -27,11 +27,18 @@ Meeting Records (Sprint 1)
 
 All meetings were conducted via Microsoft Teams.
 
-[08/02 | 19:30] Kickoff — project scope defined
-[16/02 | 20:30] Architecture — components + controllers agreed
-[22/02 | 21:30] Planning — identified missing parts
-[23/02 | 19:00] Design — diagrams refined, roles assigned
-[24/02 | 20:30] Review — progress checked, adjustments made
-[04/03 | 20:00] Implementation — data layer issues identified
-[15/03 | 21:00] Architecture — move toward Clean Architecture
-[15/04 | 19:30] Final review — structure validated, next steps set
+08/02  19:30  Kickoff — project scope defined
+
+16/02  20:30  Architecture — components & controllers agreed
+
+22/02  21:30  Planning — identified missing parts
+
+23/02  19:00  Design — diagrams refined, roles assigned
+
+24/02  20:30  Review — progress checked, adjustments made
+
+04/03  20:00  Implementation — data layer issues identified
+
+15/03  21:00  Architecture — move toward Clean Architecture
+
+15/04  19:30  Final review — structure validated, next steps set
