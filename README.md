@@ -23,7 +23,7 @@ which are currently implemented as abstract components and will be extended in l
 ## Initial System Architecture
 ![Architecture](./diagrams/initial-architecture.png)
 
-Meeting Records (Sprint 1)
+Meeting Records 
 
 All meetings were conducted via Microsoft Teams.
 
