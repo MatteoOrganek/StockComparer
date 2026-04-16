@@ -29,7 +29,7 @@ All meetings were conducted via Microsoft Teams.
 
 08/02  19:30  Kickoff — project scope defined
 
-16/02  20:30  Architecture — components & controllers agreed
+16/02  20:30  Architecture — components and controllers agreed
 
 22/02  21:30  Planning — identified missing parts
 
