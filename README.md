@@ -1,4 +1,4 @@
-## Architecture Overview (Sprint 1)
+
 
 The StockComparer application is designed using a simple, component-based architecture. 
 The system separates concerns between the user interface, business logic, data retrieval, and data storage components. 
@@ -22,3 +22,23 @@ which are currently implemented as abstract components and will be extended in l
 
 ## Initial System Architecture
 ![Architecture](./diagrams/initial-architecture.png)
+
+## Meeting Records 
+
+All meetings were conducted via Microsoft Teams.
+
+08/02  19:30  Kickoff — project scope defined
+
+16/02  20:30  Architecture — components and controllers agreed
+
+22/02  21:30  Planning — identified missing parts
+
+23/02  19:00  Design — diagrams refined, roles assigned
+
+24/02  20:30  Review — progress checked, adjustments made
+
+04/03  20:00  Implementation — data layer issues identified
+
+15/03  21:00  Architecture — move toward Clean Architecture
+
+15/04  19:30  Final review — structure validated, next steps set

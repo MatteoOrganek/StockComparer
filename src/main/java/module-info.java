@@ -24,4 +24,6 @@ module owres.stockcomparer {
     opens owres.stockcomparer.application to javafx.fxml;
     exports owres.stockcomparer.application.controller;
     opens owres.stockcomparer.application.controller to javafx.fxml;
+
+    opens owres.stockcomparer.model.data.database to com.google.gson;
 }
