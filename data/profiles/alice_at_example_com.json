@@ -1,5 +1,11 @@
 {
   "email": "alice@example.com",
   "password": "secret123",
-  "firstWatchlistSymbol": "TSLA"
+  "firstWatchlistStock": {
+    "symbol": "TSLA",
+    "name": "Tesla",
+    "company": {
+      "name": "Tesla"
+    }
+  }
 }
