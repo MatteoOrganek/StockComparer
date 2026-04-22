@@ -10,11 +10,14 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <VBox fx:controller="owres.stockcomparer.application.controller.GraphController"
       xmlns:fx="http://javafx.com/fxml"
       fx:id="graphRoot"
       prefWidth="400" prefHeight="500"
       spacing="10"
+      VBox.vgrow="ALWAYS"
       style="-fx-background-color: #F8F8F8;">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
@@ -24,14 +27,26 @@
         <Region HBox.hgrow="ALWAYS"/>
         <Text text="Stock Price" fx:id="graphPrice"/>
     </HBox>
-    <LineChart fx:id="lineChart" prefHeight="500">
+
+    <LineChart fx:id="lineChart"
+               VBox.vgrow="ALWAYS"
+               layoutX="5.0" layoutY="10.0"
+               prefHeight="233.0" prefWidth="870.0"
+               title="Price">
+        <xAxis>
+            <CategoryAxis side="BOTTOM" fx:id="x" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis fx:id="y" side="LEFT" />
+        </yAxis>
     </LineChart>
+
     <HBox>
         <Region HBox.hgrow="ALWAYS"/>
 
-        <Button text="Test"
+        <Button text="Add to Watchlist"
                 styleClass="main"
-                fx:id="testButton"
+                fx:id="addToWatchlistButton"
         />
     </HBox>
 </VBox>

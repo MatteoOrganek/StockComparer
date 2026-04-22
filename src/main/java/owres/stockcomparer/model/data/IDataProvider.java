@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IDataProvider {
 
-    List<PriceEntry> getData(Stock stock, LocalDateTime startTime, LocalDateTime endTime);
+    PriceHistory getData(Stock stock, LocalDateTime startTime, LocalDateTime endTime);
     Boolean isAvailable(Stock stock);
     StockExchange getExchangeForStock(Stock stock);
 }

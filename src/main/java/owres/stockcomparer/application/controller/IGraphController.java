@@ -6,7 +6,7 @@ import owres.stockcomparer.model.graph.IGraph;
 import java.util.List;
 
 public interface IGraphController {
-    void updateGraph(IGraph graph);
+    void updateGraph();
 
     List<Stock> searchStock(String stock);
     void selectStock(Stock stock);

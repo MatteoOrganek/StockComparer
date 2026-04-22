@@ -1,9 +1,6 @@
 package owres.stockcomparer.model.data.Api;
 
-import owres.stockcomparer.model.data.Currency;
-import owres.stockcomparer.model.data.IDataProvider;
-import owres.stockcomparer.model.data.PriceEntry;
-import owres.stockcomparer.model.data.Stock;
+import owres.stockcomparer.model.data.*;
 import yahoofinance.YahooFinance;
 import yahoofinance.histquotes.HistoricalQuote;
 import yahoofinance.histquotes.Interval;
@@ -32,9 +29,9 @@ public class YahooFinanceAPI implements IDataProvider {
      * unavailable.
      */
     @Override
-    public List<PriceEntry> getData(Stock stock,
-                                    LocalDateTime startTime,
-                                    LocalDateTime endTime) {
+    public PriceHistory getData(Stock stock,
+                                LocalDateTime startTime,
+                                LocalDateTime endTime) {
         List<PriceEntry> entries = new ArrayList<>();
 
         try {
@@ -47,7 +44,7 @@ public class YahooFinanceAPI implements IDataProvider {
             if (yahooStock == null || yahooStock.getHistory() == null) {
                 LOGGER.warning("No data returned for symbol: "
                         + stock.getSymbol());
-                return entries;
+                return new PriceHistory(stock, entries);
             }
 
             for (HistoricalQuote quote : yahooStock.getHistory()) {
@@ -70,7 +67,7 @@ public class YahooFinanceAPI implements IDataProvider {
                             + stock.getSymbol(), e);
         }
 
-        return entries;
+        return new PriceHistory(stock, entries);
     }
 
     /**

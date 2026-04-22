@@ -1,10 +1,7 @@
 package owres.stockcomparer.model.graph;
 
+import owres.stockcomparer.model.data.*;
 import owres.stockcomparer.model.data.Api.ApiBridge;
-import owres.stockcomparer.model.data.Company;
-import owres.stockcomparer.model.data.IDataProvider;
-import owres.stockcomparer.model.data.PriceEntry;
-import owres.stockcomparer.model.data.Stock;
 import owres.stockcomparer.model.data.database.Database;
 
 import java.time.LocalDateTime;
@@ -25,7 +22,7 @@ public class Graph implements IGraph {
 
     IProfile profile;
 
-    List<PriceEntry> data;
+    PriceHistory data;
 
     Stock stock = new Stock("TSLA", "Tesla", new Company("Tesla"));
 
@@ -33,7 +30,7 @@ public class Graph implements IGraph {
     public Graph() {}
 
     // Default constructor
-    public Graph(IDataProvider dataProvider, IInteraction interaction, IIndicator indicator, IProfile profile, List<PriceEntry> data, Stock stock) {
+    public Graph(IDataProvider dataProvider, IInteraction interaction, IIndicator indicator, IProfile profile, PriceHistory data, Stock stock) {
         this.dataProvider = dataProvider;
         this.interaction = interaction;
         this.indicator = indicator;
@@ -42,7 +39,7 @@ public class Graph implements IGraph {
         this.stock = stock;
     }
 
-    public List<PriceEntry> getData() {
+    public PriceHistory getData() {
 
         // Get database class
         System.out.println("Using Database...");
@@ -69,7 +66,7 @@ public class Graph implements IGraph {
         return data;
     }
 
-    private List<PriceEntry> tryFetchData(IDataProvider dataProvider) {
+    private PriceHistory tryFetchData(IDataProvider dataProvider) {
         if (dataProvider.isAvailable(stock)){
             // Get data if available
             return dataProvider.getData(stock, LocalDateTime.now(), LocalDateTime.now());

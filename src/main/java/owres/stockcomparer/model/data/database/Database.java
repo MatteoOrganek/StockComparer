@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import owres.stockcomparer.model.data.Api.StockExchange;
 import owres.stockcomparer.model.data.IDataProvider;
 import owres.stockcomparer.model.data.PriceEntry;
+import owres.stockcomparer.model.data.PriceHistory;
 import owres.stockcomparer.model.data.Stock;
 
 import java.io.*;
@@ -38,9 +39,9 @@ public class Database implements IDataProvider {
     }
 
     @Override
-    public List<PriceEntry> getData(Stock stock, LocalDateTime startTime, LocalDateTime endTime) {
+    public PriceHistory getData(Stock stock, LocalDateTime startTime, LocalDateTime endTime) {
         PriceHistoryRecord record = loadRecord(stock.getSymbol());
-        if (record == null) return new ArrayList<>();
+        if (record == null) return null;
 
         List<PriceEntry> result = new ArrayList<>();
         for (PriceEntry e : record.getEntries()) {
@@ -49,7 +50,7 @@ public class Database implements IDataProvider {
                 result.add(e);
             }
         }
-        return result;
+        return new PriceHistory(stock, result);
     }
 
     @Override

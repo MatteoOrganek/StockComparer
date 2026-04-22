@@ -38,15 +38,6 @@ public class Application extends javafx.application.Application {
         stage.setScene(scene);
         stage.show();
 
-        VBox graphContainer = (VBox) root.lookup("#graphContainer");
-
-        FXMLLoader graphLoader = new FXMLLoader(
-                getClass().getResource("/owres/stockcomparer/view/graph-view.fxml")
-        );
-        LineChart<Number, Number> graphComponent = graphLoader.load();
-
-
-        graphContainer.getChildren().add(graphComponent);
 
     }
 }

@@ -1,34 +1,32 @@
 package owres.stockcomparer.application.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 import owres.stockcomparer.model.data.PriceEntry;
 import owres.stockcomparer.model.data.Stock;
-import owres.stockcomparer.model.graph.Graph;
-import owres.stockcomparer.model.graph.IGraph;
-import owres.stockcomparer.model.graph.Profile;
+import owres.stockcomparer.model.data.database.MockDataSource;
+import owres.stockcomparer.model.graph.*;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * Controller handling graph-view calls
  */
-public class GraphController implements IGraphController {
+public class GraphController implements IGraphController, StockObserver {
 
-
+    IInteraction interaction;
+    public CategoryAxis x;
+    public NumberAxis y;
     @FXML
-    private LineChart<Number, Number> lineChart;
+    LineChart<String, Number> lineChart;
 
     // Graph instance
     IGraph graph;
+
+    Stock currentStock;
 
     /**
      * Function called on initialization, where graph is instanced and Listeners for window resize are setup.
@@ -39,70 +37,58 @@ public class GraphController implements IGraphController {
         // Instantiate Graph
         graph = new Graph();
 
-        // Fetch JSON data
-        List<PriceEntry> data = graph.getData();
 
-        // Draw graph
-        drawGraph();
+        // Setup Chart Appearance
+        lineChart.setCreateSymbols(false);
 
+        interaction = new Interaction(this);
     }
+    public void drawGraph() {
+        // Clear previous data
+        lineChart.getData().clear();
 
-    /**
-     * This function is able to draw lines on a canvas based on the JSON input from graph
-     */
-    public LineChart<Number, Number> drawGraph() {
+        // Use the generator we discussed
+        // In a real scenario, you'd get this from 'graph.getData()'
+        if (currentStock != null) {
+            var mockHistory = MockDataSource.getData(currentStock.getSymbol(), currentStock.getName(), currentStock.getCompany().getName(), 30);
 
-        // Based on the JSON data the program will create a graph out of it, translating prices into points in a canvas
+            updateYAxisBounds(mockHistory.getEntries());
 
-        // Axes
-        NumberAxis xAxis = new NumberAxis();
-        xAxis.setLabel("Time");
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            series.setName(mockHistory.getStock().getSymbol());
 
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Price");
+            // Map PriceEntry objects to Chart Data
+            for (PriceEntry entry : mockHistory.getEntries()) {
+                // X = Date (String), Y = Close Price (Double)
+                String dateLabel = entry.getTime().toLocalDate().toString();
+                series.getData().add(new XYChart.Data<>(dateLabel, entry.getClosePrice()));
+            }
 
-        // Chart
-        LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
-        lineChart.setCreateSymbols(false); // smoother look (no dots)
-
-        XYChart.Series<Number, Number> series = new XYChart.Series<>();
-        series.setName("Stock Name");
-
-        // Generate random walk data
-        Random random = new Random();
-        double price = 100.0;
-
-        for (int i = 0; i < 100; i++) {
-            price += (random.nextDouble() - 0.5) * 2; // small fluctuations
-            series.getData().add(new XYChart.Data<>(i, price));
+            lineChart.getData().add(series);
         }
-
-        lineChart.getData().add(series);
-
-        return lineChart;
-
     }
+    private void updateYAxisBounds(List<PriceEntry> entries) {
+        if (entries == null || entries.isEmpty()) return;
 
-    public void drawCandlesticks() {
+        // Find min and max close prices
+        double min = entries.stream().mapToDouble(PriceEntry::getClosePrice).min().orElse(0);
+        double max = entries.stream().mapToDouble(PriceEntry::getClosePrice).max().orElse(100);
 
-        // Fetch data
-        List<PriceEntry> data = graph.getData();
+        double range = max - min;
+        // Handle the case where price is flat (range is 0)
+        double padding = (range == 0) ? min * 0.1 : range * 0.1;
 
-        // To be implemented in the next few sprints
-    }
+        // Configure the Y Axis (injected via @FXML)
+        y.setAutoRanging(false); // Crucial: tell FX not to override your settings
+        y.setLowerBound(min - padding);
+        y.setUpperBound(max + padding);
 
-    /**
-     * This function deletes recursively all children in the canvas
-     */
-    public void clearCanvas() {
-
+        // Optional: adjust the tick unit so the labels don't get crowded
+        y.setTickUnit(padding);
     }
 
     @Override
-    public void updateGraph(IGraph graph) {
-
-        // Fetch data
-        List<PriceEntry> data = graph.getData();
+    public void updateGraph() {
         drawGraph();
     }
 
@@ -114,6 +100,14 @@ public class GraphController implements IGraphController {
     @Override
     public void selectStock(Stock stock) {
 
+    }
+
+    @Override
+    public void onStockChanged(Stock newStock) {
+
+        System.out.println("Stock changed to: " + newStock.getSymbol());
+        currentStock = newStock;
+        drawGraph();
     }
 }
 
