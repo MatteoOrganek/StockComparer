@@ -3,6 +3,10 @@ package owres.stockcomparer.application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.Axis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -10,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.Random;
 
 public class Application extends javafx.application.Application {
     @Override
@@ -38,7 +43,8 @@ public class Application extends javafx.application.Application {
         FXMLLoader graphLoader = new FXMLLoader(
                 getClass().getResource("/owres/stockcomparer/view/graph-view.fxml")
         );
-        Pane graphComponent = graphLoader.load();
+        LineChart<Number, Number> graphComponent = graphLoader.load();
+
 
         graphContainer.getChildren().add(graphComponent);
 

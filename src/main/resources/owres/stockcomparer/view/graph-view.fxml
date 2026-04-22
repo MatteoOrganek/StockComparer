@@ -9,6 +9,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.chart.LineChart?>
 <VBox fx:controller="owres.stockcomparer.application.controller.GraphController"
       xmlns:fx="http://javafx.com/fxml"
       fx:id="graphRoot"
@@ -23,15 +24,15 @@
         <Region HBox.hgrow="ALWAYS"/>
         <Text text="Stock Price" fx:id="graphPrice"/>
     </HBox>
-    <Pane fx:id="canvas" prefHeight="500">
-    </Pane>
+    <LineChart fx:id="lineChart" prefHeight="500">
+    </LineChart>
     <HBox>
         <Region HBox.hgrow="ALWAYS"/>
 
         <Button text="Test"
                 styleClass="main"
                 fx:id="testButton"
-                onAction="#drawLine"/>
+        />
     </HBox>
 </VBox>
 

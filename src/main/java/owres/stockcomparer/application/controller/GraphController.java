@@ -1,6 +1,10 @@
 package owres.stockcomparer.application.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -12,18 +16,19 @@ import owres.stockcomparer.model.graph.IGraph;
 import owres.stockcomparer.model.graph.Profile;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Controller handling graph-view calls
  */
 public class GraphController implements IGraphController {
 
-    // Graph instance
-    IGraph graph;
 
     @FXML
-    public Pane canvas;
+    private LineChart<Number, Number> lineChart;
 
+    // Graph instance
+    IGraph graph;
 
     /**
      * Function called on initialization, where graph is instanced and Listeners for window resize are setup.
@@ -34,48 +39,47 @@ public class GraphController implements IGraphController {
         // Instantiate Graph
         graph = new Graph();
 
-
         // Fetch JSON data
         List<PriceEntry> data = graph.getData();
 
-        // Draw default lines
-        drawLine();
+        // Draw graph
+        drawGraph();
 
-        // Crate Listener for width change
-        canvas.widthProperty().addListener((obs, oldWidth, newWidth) -> {
-            drawLine();
-        });
-
-        // Crate Listener for height change
-        canvas.heightProperty().addListener((obs, oldHeight, newHeight) -> {
-            drawLine();
-        });
     }
 
     /**
      * This function is able to draw lines on a canvas based on the JSON input from graph
      */
-    public void drawLine() {
+    public LineChart<Number, Number> drawGraph() {
 
         // Based on the JSON data the program will create a graph out of it, translating prices into points in a canvas
 
-        // Remove any children in canvas
-        clearCanvas();
+        // Axes
+        NumberAxis xAxis = new NumberAxis();
+        xAxis.setLabel("Time");
 
-        // Mock up a base shape to check for resize functionality
-        double width = canvas.getWidth();
-        double height = canvas.getHeight();
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Price");
 
-        Rectangle rect = new Rectangle(0, 0, width, height);
-        rect.setStroke(Color.BLACK);
-        rect.setFill(Color.TRANSPARENT);
-        canvas.getChildren().add(rect);
+        // Chart
+        LineChart<Number, Number> lineChart = new LineChart<>(xAxis, yAxis);
+        lineChart.setCreateSymbols(false); // smoother look (no dots)
 
-        Line diag = new Line(0, 0, width, height);
-        diag.setStartX(0);
-        diag.setStartY(0);
-        diag.setStroke(Color.BLACK);
-        canvas.getChildren().add(diag);
+        XYChart.Series<Number, Number> series = new XYChart.Series<>();
+        series.setName("Stock Name");
+
+        // Generate random walk data
+        Random random = new Random();
+        double price = 100.0;
+
+        for (int i = 0; i < 100; i++) {
+            price += (random.nextDouble() - 0.5) * 2; // small fluctuations
+            series.getData().add(new XYChart.Data<>(i, price));
+        }
+
+        lineChart.getData().add(series);
+
+        return lineChart;
 
     }
 
@@ -91,7 +95,7 @@ public class GraphController implements IGraphController {
      * This function deletes recursively all children in the canvas
      */
     public void clearCanvas() {
-        canvas.getChildren().clear();
+
     }
 
     @Override
@@ -99,7 +103,7 @@ public class GraphController implements IGraphController {
 
         // Fetch data
         List<PriceEntry> data = graph.getData();
-        drawLine();
+        drawGraph();
     }
 
     @Override
