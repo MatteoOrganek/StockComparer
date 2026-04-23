@@ -40,20 +40,24 @@ public class Graph implements IGraph {
     }
 
     public PriceHistory getData() {
+        //gets stock data from 30 days earlier up to the current time
+        LocalDateTime endTime = LocalDateTime.now();
+        LocalDateTime startTime = endTime.minusDays(30);
 
         // Get database class
         System.out.println("Using Database...");
         dataProvider = new Database();
         // Try to fetch data using the database
         System.out.println("Getting data from Database...");
-        data = tryFetchData(dataProvider);
+        //Fetch data from database cache
+        data = tryFetchData(dataProvider, startTime, endTime);
 
         // If the database does not have the correct data, dataProvider is switched to APIBridge
         if (data == null) {
             System.out.println("Switching to Api...");
             dataProvider = new ApiBridge();
             System.out.println("Getting data from ApiBridge...");
-            data = tryFetchData(dataProvider);
+            data = tryFetchData(dataProvider, startTime, endTime);
         }
 
         if (data == null) {
@@ -66,13 +70,25 @@ public class Graph implements IGraph {
         return data;
     }
 
-    private PriceHistory tryFetchData(IDataProvider dataProvider) {
+    //avoids repeating same logic twice for database and Api data check
+    private PriceHistory tryFetchData(IDataProvider dataProvider, LocalDateTime startTime, LocalDateTime endTime) {
+        //if the data provider is a database it checks the cache, if its an ApiBridge it checks with live API
         if (dataProvider.isAvailable(stock)){
-            // Get data if available
-            return dataProvider.getData(stock, LocalDateTime.now(), LocalDateTime.now());
-        } else {
-            System.out.println("Data not found for " + dataProvider.getClass().getSimpleName());
-            return null;
+            PriceHistory history = dataProvider.getData(stock, startTime, endTime);
+            //Checks if pricehistory exists, entries list exists and not empty
+            if (history != null && history.getEntries() != null && !history.getEntries().isEmpty()) {
+                return history;
+            }
         }
+
+        //Debugging message saying the provider could not give valid data
+        System.out.println("Data not found for " + dataProvider.getClass().getSimpleName());
+        return null;
+    }
+
+    //Lets controller pass in the stock the user selected
+    public void setStock(Stock stock) {
+        this.stock = stock;
     }
 }
+

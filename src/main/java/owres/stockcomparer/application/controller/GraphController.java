@@ -6,8 +6,8 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import owres.stockcomparer.model.data.PriceEntry;
+import owres.stockcomparer.model.data.PriceHistory;
 import owres.stockcomparer.model.data.Stock;
-import owres.stockcomparer.model.data.database.MockDataSource;
 import owres.stockcomparer.model.graph.*;
 
 import java.util.List;
@@ -47,18 +47,30 @@ public class GraphController implements IGraphController, StockObserver {
         // Clear previous data
         lineChart.getData().clear();
 
-        // Use the generator we discussed
-        // In a real scenario, you'd get this from 'graph.getData()'
+        //Update graph to user selected stock instead of default
         if (currentStock != null) {
-            var mockHistory = MockDataSource.getData(currentStock.getSymbol(), currentStock.getName(), currentStock.getCompany().getName(), 30);
+            //If graph is a Graph object
+            if (graph instanceof Graph graphModel) {
+                //calls upon user selected stock
+                graphModel.setStock(currentStock);
+            }
 
-            updateYAxisBounds(mockHistory.getEntries());
+            //Asks graph class for stock data
+            PriceHistory history = graph.getData();
+            //Checks if we get a PriceHistory object, if it contains a list and if the list actually contains stock price entries
+            if (history == null || history.getEntries() == null || history.getEntries().isEmpty()) {
+                return;
+            }
+
+            //sends real price entries into updateYAxisBounds method
+            updateYAxisBounds(history.getEntries());
 
             XYChart.Series<String, Number> series = new XYChart.Series<>();
-            series.setName(mockHistory.getStock().getSymbol());
+            //Sets graph label to real stock symbol (example TSLA , AAPL)
+            series.setName(history.getStock().getSymbol());
 
             // Map PriceEntry objects to Chart Data
-            for (PriceEntry entry : mockHistory.getEntries()) {
+            for (PriceEntry entry : history.getEntries()) {
                 // X = Date (String), Y = Close Price (Double)
                 String dateLabel = entry.getTime().toLocalDate().toString();
                 series.getData().add(new XYChart.Data<>(dateLabel, entry.getClosePrice()));
@@ -67,6 +79,8 @@ public class GraphController implements IGraphController, StockObserver {
             lineChart.getData().add(series);
         }
     }
+    //Calculates graphs vertical scale using price entries
+    //
     private void updateYAxisBounds(List<PriceEntry> entries) {
         if (entries == null || entries.isEmpty()) return;
 
@@ -110,4 +124,3 @@ public class GraphController implements IGraphController, StockObserver {
         drawGraph();
     }
 }
-
