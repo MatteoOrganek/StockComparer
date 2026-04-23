@@ -1,6 +1,9 @@
 package owres.stockcomparer.model.data.Api;
 
-import owres.stockcomparer.model.data.*;
+import owres.stockcomparer.model.data.IDataProvider;
+import owres.stockcomparer.model.stock.PriceEntry;
+import owres.stockcomparer.model.stock.PriceHistory;
+import owres.stockcomparer.model.stock.Stock;
 import yahoofinance.YahooFinance;
 import yahoofinance.histquotes.HistoricalQuote;
 import yahoofinance.histquotes.Interval;

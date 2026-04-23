@@ -1,7 +1,6 @@
 package owres.stockcomparer.application.controller;
 
-import owres.stockcomparer.model.data.Stock;
-import owres.stockcomparer.model.graph.IGraph;
+import owres.stockcomparer.model.stock.Stock;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
 package owres.stockcomparer;
 
-import owres.stockcomparer.model.data.Company;
-import owres.stockcomparer.model.data.Stock;
+import owres.stockcomparer.model.stock.Company;
+import owres.stockcomparer.model.stock.Stock;
 import owres.stockcomparer.model.data.database.ProfileDatabase;
 import owres.stockcomparer.model.data.database.ProfileRecord;
-import owres.stockcomparer.model.graph.Graph;
-import owres.stockcomparer.model.graph.IGraph;
+import owres.stockcomparer.model.graph.GraphModel;
+import owres.stockcomparer.model.graph.IGraphModel;
 
 import java.io.File;
 
@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
         // --- Graph test ---
-        IGraph graph = new Graph();
+        IGraphModel graph = new GraphModel();
         System.out.println(graph.getData());
 
         // --- Profile test ---

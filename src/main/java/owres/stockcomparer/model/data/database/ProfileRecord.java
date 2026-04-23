@@ -1,7 +1,6 @@
 package owres.stockcomparer.model.data.database;
 
-import owres.stockcomparer.model.data.Company;
-import owres.stockcomparer.model.data.Stock;
+import owres.stockcomparer.model.stock.Stock;
 
 /**
  * Serialisable profile stored at data/profiles/{email}.json

@@ -1,4 +1,4 @@
 package owres.stockcomparer.model.data;
 
-public interface IUser {
+public class DataProviderSystem {
 }

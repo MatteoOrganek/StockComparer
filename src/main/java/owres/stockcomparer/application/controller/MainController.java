@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
-import owres.stockcomparer.model.data.Company;
+import owres.stockcomparer.model.stock.Company;
 import owres.stockcomparer.model.graph.IInteraction;
 import owres.stockcomparer.model.graph.Interaction;
 

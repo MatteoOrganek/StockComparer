@@ -1,4 +1,4 @@
-package owres.stockcomparer.model.data;
+package owres.stockcomparer.model.stock;
 
 /**
  * This class creates a stock objects defined by its symbol, name, company

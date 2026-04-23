@@ -1,4 +1,4 @@
-package owres.stockcomparer.model.graph;
+package owres.stockcomparer.model.graph.indicator;
 
 public class Indicator implements IIndicator {
     @Override

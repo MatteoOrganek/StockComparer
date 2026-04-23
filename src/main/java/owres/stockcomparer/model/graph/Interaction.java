@@ -2,9 +2,8 @@ package owres.stockcomparer.model.graph;
 
 import owres.stockcomparer.application.controller.IGraphController;
 import owres.stockcomparer.application.controller.StockObserver;
-import owres.stockcomparer.model.data.Company;
-import owres.stockcomparer.model.data.Stock;
-import owres.stockcomparer.model.graph.IInteraction;
+import owres.stockcomparer.model.stock.Company;
+import owres.stockcomparer.model.stock.Stock;
 
 import java.util.ArrayList;
 import java.util.List;

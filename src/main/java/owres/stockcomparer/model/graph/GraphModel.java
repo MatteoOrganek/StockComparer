@@ -1,17 +1,20 @@
 package owres.stockcomparer.model.graph;
 
-import owres.stockcomparer.model.data.*;
 import owres.stockcomparer.model.data.Api.ApiBridge;
 import owres.stockcomparer.model.data.database.Database;
+import owres.stockcomparer.model.graph.indicator.IIndicator;
+import owres.stockcomparer.model.data.IDataProvider;
+import owres.stockcomparer.model.stock.Company;
+import owres.stockcomparer.model.stock.PriceHistory;
+import owres.stockcomparer.model.stock.Stock;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 
 /**
  * This Class handles the data translation to 1`
  */
-public class Graph implements IGraph {
+public class GraphModel implements IGraphModel {
 
     // Thanks to the Laws of Substitutability, dataProvider can become a database or API instance
     IDataProvider dataProvider;
@@ -27,10 +30,10 @@ public class Graph implements IGraph {
     Stock stock = new Stock("TSLA", "Tesla", new Company("Tesla"));
 
     // Empty constructor
-    public Graph() {}
+    public GraphModel() {}
 
     // Default constructor
-    public Graph(IDataProvider dataProvider, IInteraction interaction, IIndicator indicator, IProfile profile, PriceHistory data, Stock stock) {
+    public GraphModel(IDataProvider dataProvider, IInteraction interaction, IIndicator indicator, IProfile profile, PriceHistory data, Stock stock) {
         this.dataProvider = dataProvider;
         this.interaction = interaction;
         this.indicator = indicator;

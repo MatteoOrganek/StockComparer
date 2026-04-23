@@ -1,4 +1,4 @@
-package owres.stockcomparer.model.data;
+package owres.stockcomparer.model.stock;
 
 public interface IStock {
     String getSymbol();
