@@ -1,6 +1,6 @@
 package owres.stockcomparer.model.data.Api;
 
-import owres.stockcomparer.model.data.PriceEntry;
+import owres.stockcomparer.model.stock.PriceEntry;
 
 import java.time.LocalDate;
 import java.util.List;

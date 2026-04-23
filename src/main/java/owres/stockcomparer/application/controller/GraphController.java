@@ -5,9 +5,9 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import owres.stockcomparer.model.data.PriceEntry;
-import owres.stockcomparer.model.data.PriceHistory;
-import owres.stockcomparer.model.data.Stock;
+import owres.stockcomparer.model.stock.PriceEntry;
+import owres.stockcomparer.model.stock.PriceHistory;
+import owres.stockcomparer.model.stock.Stock;
 import owres.stockcomparer.model.graph.*;
 
 import java.util.List;
@@ -24,7 +24,7 @@ public class GraphController implements IGraphController, StockObserver {
     LineChart<String, Number> lineChart;
 
     // Graph instance
-    IGraph graph;
+    IGraphModel graph;
 
     Stock currentStock;
 
@@ -35,7 +35,7 @@ public class GraphController implements IGraphController, StockObserver {
     public void initialize() {
 
         // Instantiate Graph
-        graph = new Graph();
+        graph = new GraphModel();
 
 
         // Setup Chart Appearance
@@ -50,7 +50,7 @@ public class GraphController implements IGraphController, StockObserver {
         //Update graph to user selected stock instead of default
         if (currentStock != null) {
             //If graph is a Graph object
-            if (graph instanceof Graph graphModel) {
+            if (graph instanceof GraphModel graphModel) {
                 //calls upon user selected stock
                 graphModel.setStock(currentStock);
             }

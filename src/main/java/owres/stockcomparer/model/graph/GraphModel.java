@@ -2,6 +2,7 @@ package owres.stockcomparer.model.graph;
 
 import owres.stockcomparer.model.data.Api.ApiBridge;
 import owres.stockcomparer.model.data.database.Database;
+import owres.stockcomparer.model.graph.Profile.IProfile;
 import owres.stockcomparer.model.graph.indicator.IIndicator;
 import owres.stockcomparer.model.data.IDataProvider;
 import owres.stockcomparer.model.stock.Company;

@@ -1,57 +1,61 @@
 package owres.stockcomparer.model.data.Api;
 
-import owres.stockcomparer.model.data.PriceEntry;
+import owres.stockcomparer.model.data.IDataProvider;
+import owres.stockcomparer.model.stock.PriceEntry;
+import owres.stockcomparer.model.stock.PriceHistory;
+import owres.stockcomparer.model.stock.Stock;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class FakeMarketDataSource implements IMarketDataSource {
+public class FakeMarketDataSource implements IDataProvider {
+
+    private final Random random = new Random();
 
     @Override
-    public StockPriceDataSource fetchDailyCloses(String symbol, LocalDate from, LocalDate to) throws Exception {
-       //Creates empty list
+    public PriceHistory getData(Stock stock, LocalDateTime startTime, LocalDateTime endTime) {
+
         List<PriceEntry> entries = new ArrayList<>();
-        //Creates random number generator
-        Random random = new Random();
-        //Gives the fake stock a random starting point between 100-150 before daily price changes begin
-        double currentPrice = 100.0 + random.nextDouble() * 50.0;
 
-        LocalDate currentDate = from;
+        double price = generateBasePrice(stock.getSymbol());
 
-        //Loop until end date, generating one fake trading day at a time
-        while (!currentDate.isAfter(to)) {
-            //day opens at current price
-            double open = currentPrice;
-            //Creates closing price by moving stock up or down slightly
-            double close = open + (random.nextDouble() * 4 - 2);
-            //the high should be at least as high as open or close
-            double high = Math.max(open, close) + random.nextDouble() * 2;
-            //the low should be at least as low as open or close
-            double low = Math.min(open, close) - random.nextDouble() * 2;
-            //fake trading volume
-            long volume = 100_000 + random.nextInt(900_000);
+        LocalDateTime current = startTime;
 
-            //creates PriceEntry object and adds it to list with fixed time of midday
-            entries.add(new PriceEntry(
-                    LocalDateTime.of(currentDate, java.time.LocalTime.NOON),
-                    open,
-                    close,
-                    high,
-                    low,
-                    volume
-            ));
+        while (!current.isAfter(endTime)) {
 
-            //fake simulation forward - tomorrow starts from todays closing price and move to the next day
-            currentPrice = close;
-            currentDate = currentDate.plusDays(1);
+            // Simulate daily movement
+            double change = (random.nextDouble() - 0.5) * 2; // -1 to +1
+            price += change;
+
+            double open = price + random.nextDouble();
+            double close = price + random.nextDouble();
+            double high = Math.max(open, close) + random.nextDouble();
+            double low = Math.min(open, close) - random.nextDouble();
+            long volume = 1000 + random.nextInt(10000);
+
+            entries.add(new PriceEntry(current, open, close, high, low, volume));
+
+            current = current.plusDays(1);
         }
 
-        //This returns all the fake data together
-        return new StockPriceDataSource(symbol, entries);
+        return new PriceHistory(stock, entries);
+    }
+
+    @Override
+    public Boolean isAvailable(Stock stock) {
+        // Mock is always available
+        return true;
+    }
+
+    @Override
+    public StockExchange getExchangeForStock(Stock stock) {
+        return new StockExchange("Mock Exchange", "MOCK");
+    }
+
+    private double generateBasePrice(String symbol) {
+        // Stable base price per stock symbol (deterministic)
+        return Math.abs(symbol.hashCode() % 500) + 50;
     }
 }
-
-
