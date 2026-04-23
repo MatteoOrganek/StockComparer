@@ -1,6 +1,6 @@
 package owres.stockcomparer.model.data.database;
 
-import owres.stockcomparer.model.data.Api.StockExchange;
+import owres.stockcomparer.model.data.service.StockExchange;
 import owres.stockcomparer.model.data.IDataProvider;
 import owres.stockcomparer.model.stock.Company;
 import owres.stockcomparer.model.stock.PriceEntry;

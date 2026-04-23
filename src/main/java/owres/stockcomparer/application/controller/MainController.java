@@ -56,7 +56,7 @@ public class MainController  {
     }
 
     private void loadDropdownStockData() {
-        List<String> items = List.of("TSLA", "AAPL", "S&P500");
+        List<String> items = List.of("TSLA", "AAPL", "GOOGL", "AMZN", "NVDA", "META");
         dropdownStock.getItems().setAll(items);
     }
 

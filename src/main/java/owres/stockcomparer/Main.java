@@ -8,13 +8,17 @@ import owres.stockcomparer.model.graph.GraphModel;
 import owres.stockcomparer.model.graph.IGraphModel;
 
 import java.io.File;
+import java.time.LocalDateTime;
 
 public class Main {
     public static void main(String[] args) {
 
         // --- Graph test ---
         IGraphModel graph = new GraphModel();
-        System.out.println(graph.getData());
+        //gets stock data from 30 days earlier up to the current time
+        LocalDateTime endTime = LocalDateTime.now();
+        LocalDateTime startTime = endTime.minusDays(30);
+        System.out.println(graph.getData(new Stock("AAPL", "Apple", new Company("Apple")), startTime, endTime));
 
         // --- Profile test ---
         ProfileDatabase profileDb = new ProfileDatabase();

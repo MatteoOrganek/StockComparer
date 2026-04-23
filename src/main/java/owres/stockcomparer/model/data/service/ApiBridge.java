@@ -1,4 +1,4 @@
-package owres.stockcomparer.model.data.Api;
+package owres.stockcomparer.model.data.service;
 
 
 import owres.stockcomparer.model.data.IDataProvider;
@@ -20,7 +20,7 @@ public class ApiBridge implements IDataProvider {
     //Constructer setting up what the bridge needs, online source and local storage
     public ApiBridge() {
         //liveApi is what goes online and gets stock data, object is created when bridge starts
-        this.liveApi = new FakeMarketDataSource();
+        this.liveApi = new AlphaVantageService();
         //Will be used to save data into JSON cache files
         this.database = new Database();
     }

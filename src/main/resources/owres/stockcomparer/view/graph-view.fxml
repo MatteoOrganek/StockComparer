@@ -12,6 +12,7 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.DatePicker?>
 <VBox fx:controller="owres.stockcomparer.application.controller.GraphController"
       xmlns:fx="http://javafx.com/fxml"
       fx:id="graphRoot"
@@ -41,8 +42,15 @@
         </yAxis>
     </LineChart>
 
-    <HBox>
+    <HBox spacing="5"
+          alignment="CENTER">
         <Region HBox.hgrow="ALWAYS"/>
+
+        <Label text="Start Date:"/>
+        <DatePicker fx:id="startDatePicker" prefWidth="130"/>
+
+        <Label text="End Date:"/>
+        <DatePicker fx:id="endDatePicker" prefWidth="130"/>
 
         <Button text="Add to Watchlist"
                 styleClass="main"

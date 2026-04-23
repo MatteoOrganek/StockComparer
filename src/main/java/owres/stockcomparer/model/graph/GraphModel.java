@@ -1,7 +1,6 @@
 package owres.stockcomparer.model.graph;
 
-import owres.stockcomparer.model.data.Api.ApiBridge;
-import owres.stockcomparer.model.data.database.Database;
+import owres.stockcomparer.model.data.dataProviderSystem.DataProviderSystem;
 import owres.stockcomparer.model.graph.Profile.IProfile;
 import owres.stockcomparer.model.graph.indicator.IIndicator;
 import owres.stockcomparer.model.data.IDataProvider;
@@ -43,51 +42,10 @@ public class GraphModel implements IGraphModel {
         this.stock = stock;
     }
 
-    public PriceHistory getData() {
-        //gets stock data from 30 days earlier up to the current time
-        LocalDateTime endTime = LocalDateTime.now();
-        LocalDateTime startTime = endTime.minusDays(30);
+    public PriceHistory getData(Stock stock, LocalDateTime startTime, LocalDateTime endTime) {
 
-        // Get database class
-        System.out.println("Using Database...");
-        dataProvider = new Database();
-        // Try to fetch data using the database
-        System.out.println("Getting data from Database...");
-        //Fetch data from database cache
-        data = tryFetchData(dataProvider, startTime, endTime);
-
-        // If the database does not have the correct data, dataProvider is switched to APIBridge
-        if (data == null) {
-            System.out.println("Switching to Api...");
-            dataProvider = new ApiBridge();
-            System.out.println("Getting data from ApiBridge...");
-            data = tryFetchData(dataProvider, startTime, endTime);
-        }
-
-        if (data == null) {
-            System.out.println("No suitable data found.");
-        } else {
-            System.out.println("Suitable data found.");
-        }
-        // Translate the data to be read by GraphController
-
-        return data;
-    }
-
-    //avoids repeating same logic twice for database and Api data check
-    private PriceHistory tryFetchData(IDataProvider dataProvider, LocalDateTime startTime, LocalDateTime endTime) {
-        //if the data provider is a database it checks the cache, if its an ApiBridge it checks with live API
-        if (dataProvider.isAvailable(stock)){
-            PriceHistory history = dataProvider.getData(stock, startTime, endTime);
-            //Checks if pricehistory exists, entries list exists and not empty
-            if (history != null && history.getEntries() != null && !history.getEntries().isEmpty()) {
-                return history;
-            }
-        }
-
-        //Debugging message saying the provider could not give valid data
-        System.out.println("Data not found for " + dataProvider.getClass().getSimpleName());
-        return null;
+        DataProviderSystem dataProviderSystem = new DataProviderSystem();
+        return dataProviderSystem.getData(stock, startTime, endTime);
     }
 
     //Lets controller pass in the stock the user selected

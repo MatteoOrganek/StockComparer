@@ -18,15 +18,21 @@ import java.util.List;
 public class GraphController implements IGraphController, StockObserver {
 
     IInteraction interaction;
-    public CategoryAxis x;
-    public NumberAxis y;
+
+    IGraphModel graph;
+
+    @FXML
+    private javafx.scene.control.DatePicker startDatePicker;
+
+    @FXML
+    private javafx.scene.control.DatePicker endDatePicker;
+
     @FXML
     LineChart<String, Number> lineChart;
 
-    // Graph instance
-    IGraphModel graph;
-
-    Stock currentStock;
+    public CategoryAxis x;
+    public NumberAxis y;
+    public Stock currentStock;
 
     /**
      * Function called on initialization, where graph is instanced and Listeners for window resize are setup.
@@ -42,6 +48,9 @@ public class GraphController implements IGraphController, StockObserver {
         lineChart.setCreateSymbols(false);
 
         interaction = new Interaction(this);
+
+        startDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> validateAndUpdate());
+        endDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> validateAndUpdate());
     }
     public void drawGraph() {
         // Clear previous data
@@ -56,7 +65,15 @@ public class GraphController implements IGraphController, StockObserver {
             }
 
             //Asks graph class for stock data
-            PriceHistory history = graph.getData();
+            if (startDatePicker.getValue() == null || endDatePicker.getValue() == null) {
+                return;
+            }
+
+            var start = startDatePicker.getValue().atStartOfDay();
+            var end = endDatePicker.getValue().atStartOfDay();
+
+            PriceHistory history = graph.getData(currentStock, start, end);
+
             //Checks if we get a PriceHistory object, if it contains a list and if the list actually contains stock price entries
             if (history == null || history.getEntries() == null || history.getEntries().isEmpty()) {
                 return;
@@ -121,6 +138,44 @@ public class GraphController implements IGraphController, StockObserver {
 
         System.out.println("Stock changed to: " + newStock.getSymbol());
         currentStock = newStock;
+        drawGraph();
+    }
+
+    private void validateAndUpdate() {
+
+        if (startDatePicker.getValue() == null || endDatePicker.getValue() == null) {
+            return;
+        }
+
+        var start = startDatePicker.getValue();
+        var end = endDatePicker.getValue();
+
+        // Prevent inverted range
+        if (end.isBefore(start)) {
+            System.out.println("Invalid date range: end is before start");
+
+            endDatePicker.setValue(start.plusDays(1));
+            return;
+        }
+
+        // Enforce max range of 2 years
+        if (start.plusYears(2).isBefore(end)) {
+            System.out.println("Date range exceeds 2 years limit");
+
+            endDatePicker.setValue(start.plusYears(2));
+            return;
+        }
+
+        // Prevent future dates
+        var today = java.time.LocalDate.now();
+        if (end.isAfter(today)) {
+            System.out.println("End date cannot be in the future");
+
+            endDatePicker.setValue(today);
+            return;
+        }
+
+        // Trigger graph update safely
         drawGraph();
     }
 }

@@ -16,6 +16,7 @@ module owres.stockcomparer {
     requires javafx.graphics;
     requires java.logging;
     requires YahooFinanceAPI;
+    requires slf4j.api;
 
 
     opens owres.stockcomparer to javafx.fxml;
@@ -28,4 +29,5 @@ module owres.stockcomparer {
     opens owres.stockcomparer.model.data.database to com.google.gson;
     opens owres.stockcomparer.model.data to com.google.gson;
     opens owres.stockcomparer.model.stock to com.google.gson;
+    opens owres.stockcomparer.model.data.dataProviderSystem to com.google.gson;
 }

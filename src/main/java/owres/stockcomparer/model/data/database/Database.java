@@ -1,7 +1,7 @@
 package owres.stockcomparer.model.data.database;
 
 import com.google.gson.*;
-import owres.stockcomparer.model.data.Api.StockExchange;
+import owres.stockcomparer.model.data.service.StockExchange;
 import owres.stockcomparer.model.data.IDataProvider;
 import owres.stockcomparer.model.stock.PriceEntry;
 import owres.stockcomparer.model.stock.PriceHistory;

@@ -1,4 +1,4 @@
-package owres.stockcomparer.model.data.Api;
+package owres.stockcomparer.model.data.service;
 
 import owres.stockcomparer.model.stock.PriceEntry;
 
