@@ -1,7 +1,11 @@
 package owres.stockcomparer.model.data.database;
 
-import owres.stockcomparer.model.data.*;
 import owres.stockcomparer.model.data.Api.StockExchange;
+import owres.stockcomparer.model.data.IDataProvider;
+import owres.stockcomparer.model.stock.Company;
+import owres.stockcomparer.model.stock.PriceEntry;
+import owres.stockcomparer.model.stock.PriceHistory;
+import owres.stockcomparer.model.stock.Stock;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

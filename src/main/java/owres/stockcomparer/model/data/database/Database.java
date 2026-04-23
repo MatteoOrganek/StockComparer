@@ -1,15 +1,13 @@
 package owres.stockcomparer.model.data.database;
 
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 import owres.stockcomparer.model.data.Api.StockExchange;
 import owres.stockcomparer.model.data.IDataProvider;
-import owres.stockcomparer.model.data.PriceEntry;
-import owres.stockcomparer.model.data.PriceHistory;
-import owres.stockcomparer.model.data.Stock;
+import owres.stockcomparer.model.stock.PriceEntry;
+import owres.stockcomparer.model.stock.PriceHistory;
+import owres.stockcomparer.model.stock.Stock;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

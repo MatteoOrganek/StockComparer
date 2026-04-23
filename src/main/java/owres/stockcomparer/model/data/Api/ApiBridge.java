@@ -2,12 +2,10 @@ package owres.stockcomparer.model.data.Api;
 
 
 import owres.stockcomparer.model.data.IDataProvider;
-import owres.stockcomparer.model.data.PriceEntry;
-import owres.stockcomparer.model.data.PriceHistory;
-import owres.stockcomparer.model.data.Stock;
+import owres.stockcomparer.model.stock.PriceHistory;
+import owres.stockcomparer.model.stock.Stock;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class ApiBridge implements IDataProvider {
 

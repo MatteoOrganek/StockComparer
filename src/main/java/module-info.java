@@ -27,4 +27,5 @@ module owres.stockcomparer {
 
     opens owres.stockcomparer.model.data.database to com.google.gson;
     opens owres.stockcomparer.model.data to com.google.gson;
+    opens owres.stockcomparer.model.stock to com.google.gson;
 }

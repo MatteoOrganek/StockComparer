@@ -1,5 +1,7 @@
-package owres.stockcomparer.model.graph;
+package owres.stockcomparer.model.graph.Profile;
 
+
+import owres.stockcomparer.model.graph.indicator.Indicator;
 
 /**
  * This class keeps track of the current user's name, email, watchlist, and current indicator personalized for the user

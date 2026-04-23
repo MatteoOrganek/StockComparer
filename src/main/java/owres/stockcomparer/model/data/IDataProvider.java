@@ -1,9 +1,10 @@
 package owres.stockcomparer.model.data;
 
 import owres.stockcomparer.model.data.Api.StockExchange;
+import owres.stockcomparer.model.stock.PriceHistory;
+import owres.stockcomparer.model.stock.Stock;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 public interface IDataProvider {
 

@@ -1,14 +1,14 @@
-package owres.stockcomparer.model.graph;
+package owres.stockcomparer.model.graph.Profile;
 
 
 
-import owres.stockcomparer.model.data.Stock;
+import owres.stockcomparer.model.stock.Stock;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Watchlist implements IWatchList{
+public class Watchlist implements IWatchList {
 
     public Watchlist() {}
 

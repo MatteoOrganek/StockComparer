@@ -1,6 +1,6 @@
 package owres.stockcomparer.model.data.database;
 
-import owres.stockcomparer.model.data.PriceEntry;
+import owres.stockcomparer.model.stock.PriceEntry;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

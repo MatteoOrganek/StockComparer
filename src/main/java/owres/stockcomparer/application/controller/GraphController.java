@@ -5,8 +5,8 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import owres.stockcomparer.model.data.PriceEntry;
-import owres.stockcomparer.model.data.Stock;
+import owres.stockcomparer.model.stock.PriceEntry;
+import owres.stockcomparer.model.stock.Stock;
 import owres.stockcomparer.model.data.database.MockDataSource;
 import owres.stockcomparer.model.graph.*;
 
@@ -24,7 +24,7 @@ public class GraphController implements IGraphController, StockObserver {
     LineChart<String, Number> lineChart;
 
     // Graph instance
-    IGraph graph;
+    IGraphModel graph;
 
     Stock currentStock;
 
@@ -35,7 +35,7 @@ public class GraphController implements IGraphController, StockObserver {
     public void initialize() {
 
         // Instantiate Graph
-        graph = new Graph();
+        graph = new GraphModel();
 
 
         // Setup Chart Appearance
@@ -47,8 +47,6 @@ public class GraphController implements IGraphController, StockObserver {
         // Clear previous data
         lineChart.getData().clear();
 
-        // Use the generator we discussed
-        // In a real scenario, you'd get this from 'graph.getData()'
         if (currentStock != null) {
             var mockHistory = MockDataSource.getData(currentStock.getSymbol(), currentStock.getName(), currentStock.getCompany().getName(), 30);
 
