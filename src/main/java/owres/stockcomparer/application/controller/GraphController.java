@@ -5,11 +5,13 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import owres.stockcomparer.model.stock.Company;
 import owres.stockcomparer.model.stock.PriceEntry;
 import owres.stockcomparer.model.stock.PriceHistory;
 import owres.stockcomparer.model.stock.Stock;
 import owres.stockcomparer.model.graph.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,6 +35,8 @@ public class GraphController implements IGraphController, StockObserver {
     public CategoryAxis x;
     public NumberAxis y;
     public Stock currentStock;
+    public Stock compareStock;
+    private boolean isComparing = false;
 
     /**
      * Function called on initialization, where graph is instanced and Listeners for window resize are setup.
@@ -52,80 +56,113 @@ public class GraphController implements IGraphController, StockObserver {
         startDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> validateAndUpdate());
         endDatePicker.valueProperty().addListener((obs, oldVal, newVal) -> validateAndUpdate());
     }
-    public void drawGraph() {
-        // Clear previous data
+
+    // Set a stock to compare against and enable overlay mode
+    public void setCompareStock(Stock stock) {
+        this.compareStock = stock;
+        this.isComparing = (stock != null);
+        drawGraph(isComparing);
+    }
+
+    // Clear the comparison stock and return to single-stock view
+    public void clearCompare() {
+        this.compareStock = null;
+        this.isComparing = false;
+        drawGraph(false);
+    }
+
+    public void drawGraph(Boolean compare) {
         lineChart.getData().clear();
 
-        //Update graph to user selected stock instead of default
-        if (currentStock != null) {
-            //If graph is a Graph object
-            if (graph instanceof GraphModel graphModel) {
-                //calls upon user selected stock
-                graphModel.setStock(currentStock);
-            }
+        if (currentStock == null) return;
+        if (startDatePicker.getValue() == null || endDatePicker.getValue() == null) return;
 
-            //Asks graph class for stock data
-            if (startDatePicker.getValue() == null || endDatePicker.getValue() == null) {
-                return;
-            }
+        var start = startDatePicker.getValue().atStartOfDay();
+        var end   = endDatePicker.getValue().atStartOfDay();
 
-            var start = startDatePicker.getValue().atStartOfDay();
-            var end = endDatePicker.getValue().atStartOfDay();
+        // Primary stock series
+        PriceHistory primaryHistory = graph.getData(currentStock, start, end);
 
-            PriceHistory history = graph.getData(currentStock, start, end);
-
-            //Checks if we get a PriceHistory object, if it contains a list and if the list actually contains stock price entries
-            if (history == null || history.getEntries() == null || history.getEntries().isEmpty()) {
-                return;
-            }
-
-            //sends real price entries into updateYAxisBounds method
-            updateYAxisBounds(history.getEntries());
-
-            XYChart.Series<String, Number> series = new XYChart.Series<>();
-            //Sets graph label to real stock symbol (example TSLA , AAPL)
-            series.setName(history.getStock().getSymbol());
-
-            // Map PriceEntry objects to Chart Data
-            for (PriceEntry entry : history.getEntries()) {
-                // X = Date (String), Y = Close Price (Double)
-                String dateLabel = entry.getTime().toLocalDate().toString();
-                series.getData().add(new XYChart.Data<>(dateLabel, entry.getClosePrice()));
-            }
-
-            lineChart.getData().add(series);
+        if (primaryHistory == null
+                || primaryHistory.getEntries() == null
+                || primaryHistory.getEntries().isEmpty()) {
+            return;
         }
+
+        XYChart.Series<String, Number> primarySeries = new XYChart.Series<>();
+        primarySeries.setName(primaryHistory.getStock().getSymbol());
+
+        for (PriceEntry entry : primaryHistory.getEntries()) {
+            String dateLabel = entry.getTime().toLocalDate().toString();
+            primarySeries.getData().add(new XYChart.Data<>(dateLabel, entry.getClosePrice()));
+        }
+
+        lineChart.getData().add(primarySeries);
+
+        // Comparison stock series (only when compare mode is on)
+        if (compare && compareStock != null) {
+            PriceHistory compareHistory = graph.getData(compareStock, start, end);
+
+            if (compareHistory != null
+                    && compareHistory.getEntries() != null
+                    && !compareHistory.getEntries().isEmpty()) {
+
+                XYChart.Series<String, Number> compareSeries = new XYChart.Series<>();
+                compareSeries.setName(compareHistory.getStock().getSymbol());
+
+                for (PriceEntry entry : compareHistory.getEntries()) {
+                    String dateLabel = entry.getTime().toLocalDate().toString();
+                    compareSeries.getData().add(new XYChart.Data<>(dateLabel, entry.getClosePrice()));
+                }
+
+                lineChart.getData().add(compareSeries);
+
+                // Y-axis must cover BOTH stocks' price ranges
+                updateYAxisBounds(primaryHistory.getEntries(), compareHistory.getEntries());
+                return; // bounds already set, skip single-stock call below
+            }
+        }
+
+        // Single stock — bounds from primary only
+        updateYAxisBounds(primaryHistory.getEntries(), null);
     }
+
     //Calculates graphs vertical scale using price entries
     //
-    private void updateYAxisBounds(List<PriceEntry> entries) {
-        if (entries == null || entries.isEmpty()) return;
+    private void updateYAxisBounds(List<PriceEntry> primary, List<PriceEntry> secondary) {
+        if (primary == null || primary.isEmpty()) return;
 
-        // Find min and max close prices
-        double min = entries.stream().mapToDouble(PriceEntry::getClosePrice).min().orElse(0);
-        double max = entries.stream().mapToDouble(PriceEntry::getClosePrice).max().orElse(100);
+        double min = primary.stream().mapToDouble(PriceEntry::getClosePrice).min().orElse(0);
+        double max = primary.stream().mapToDouble(PriceEntry::getClosePrice).max().orElse(100);
 
-        double range = max - min;
-        // Handle the case where price is flat (range is 0)
+        // Expand bounds to include the comparison stock if present
+        if (secondary != null && !secondary.isEmpty()) {
+            double secMin = secondary.stream().mapToDouble(PriceEntry::getClosePrice).min().orElse(min);
+            double secMax = secondary.stream().mapToDouble(PriceEntry::getClosePrice).max().orElse(max);
+            min = Math.min(min, secMin);
+            max = Math.max(max, secMax);
+        }
+
+        double range   = max - min;
         double padding = (range == 0) ? min * 0.1 : range * 0.1;
 
-        // Configure the Y Axis (injected via @FXML)
-        y.setAutoRanging(false); // Crucial: tell FX not to override your settings
+        y.setAutoRanging(false);
         y.setLowerBound(min - padding);
         y.setUpperBound(max + padding);
-
-        // Optional: adjust the tick unit so the labels don't get crowded
         y.setTickUnit(padding);
     }
 
     @Override
     public void updateGraph() {
-        drawGraph();
+        drawGraph(isComparing); // ← pass current compare state, not always false
     }
 
     @Override
     public List<Stock> searchStock(String stock) {
-        return List.of();
+        Stock foundStock = new Stock(stock, stock, new Company(stock));
+        ArrayList<Stock> stocks = new ArrayList<>();
+        stocks.add(foundStock);
+        return stocks;
     }
 
     @Override
@@ -138,7 +175,7 @@ public class GraphController implements IGraphController, StockObserver {
 
         System.out.println("Stock changed to: " + newStock.getSymbol());
         currentStock = newStock;
-        drawGraph();
+        drawGraph(isComparing);
     }
 
     private void validateAndUpdate() {
@@ -176,6 +213,7 @@ public class GraphController implements IGraphController, StockObserver {
         }
 
         // Trigger graph update safely
-        drawGraph();
+        drawGraph(isComparing);
     }
+
 }

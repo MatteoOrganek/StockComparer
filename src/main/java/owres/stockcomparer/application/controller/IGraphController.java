@@ -9,4 +9,6 @@ public interface IGraphController {
 
     List<Stock> searchStock(String stock);
     void selectStock(Stock stock);
+    void setCompareStock(Stock stock);
+    void clearCompare();
 }

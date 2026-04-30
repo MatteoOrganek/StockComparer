@@ -52,10 +52,10 @@
         <Label text="End Date:"/>
         <DatePicker fx:id="endDatePicker" prefWidth="130"/>
 
-        <Button text="Add to Watchlist"
-                styleClass="main"
-                fx:id="addToWatchlistButton"
-        />
+<!--        <Button text="Add to Watchlist"-->
+<!--                styleClass="main"-->
+<!--                fx:id="addToWatchlistButton"-->
+<!--        />-->
     </HBox>
 </VBox>
 

@@ -361,3 +361,102 @@
     -fx-background-color: #446356;
     -fx-text-fill: #ffffff;
 }
+
+
+/* Wrapper HBox for the compare controls */
+.compare-bar {
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 8px;
+    -fx-padding: 0 12px 0 12px;
+}
+
+/* "Compare:" label */
+.compare-label {
+    -fx-text-fill: #446356;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+/* Symbol input field — inherits .text-field base, overrides accent colour */
+.compare-field {
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #446356;
+    -fx-border-width: 1.5px;
+    -fx-padding: 6px 10px;
+    -fx-font-size: 14px;
+    -fx-text-fill: #495057;
+    -fx-background-color: #ffffff;
+    -fx-prompt-text-fill: #6c757d;
+    -fx-pref-width: 90px;
+}
+
+.compare-field:focused {
+    -fx-border-color: #3f6e5a;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(68,99,86,0.2), 4, 0, 0, 1);
+}
+
+/* "Add" button — matches .btn green style */
+.button-add-compare {
+    -fx-background-color: #446356;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 6px 14px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 4, 0, 0, 1);
+}
+
+.button-add-compare:hover {
+    -fx-background-color: #3f6e5a;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 2);
+}
+
+.button-add-compare:pressed {
+    -fx-background-color: #304a3f;
+    -fx-effect: none;
+}
+
+/* "Clear" button — red variant, mirrors .button.main.red */
+.button-clear-compare {
+    -fx-background-color: #db6767;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: 500;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 6px 14px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 4, 0, 0, 1);
+}
+
+.button-clear-compare:hover {
+    -fx-background-color: #944141;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 2);
+}
+
+.button-clear-compare:pressed {
+    -fx-background-color: #8a2424;
+    -fx-effect: none;
+}
+
+/* Disabled state — both buttons */
+.button-add-compare:disabled,
+.button-clear-compare:disabled {
+    -fx-opacity: 0.45;
+    -fx-cursor: default;
+    -fx-effect: none;
+}
+
+/* Vertical separator between the dropdowns and the compare bar */
+.compare-separator {
+    -fx-background-color: #ced4da;
+    -fx-pref-width: 1px;
+    -fx-pref-height: 24px;
+    -fx-padding: 0;
+}

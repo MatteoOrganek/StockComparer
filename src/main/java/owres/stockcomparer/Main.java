@@ -13,14 +13,14 @@ import java.time.LocalDateTime;
 public class Main {
     public static void main(String[] args) {
 
-        // --- Graph test ---
+        // Graph test
         IGraphModel graph = new GraphModel();
         //gets stock data from 30 days earlier up to the current time
         LocalDateTime endTime = LocalDateTime.now();
         LocalDateTime startTime = endTime.minusDays(30);
         System.out.println(graph.getData(new Stock("AAPL", "Apple", new Company("Apple")), startTime, endTime));
 
-        // --- Profile test ---
+        // Profile test
         ProfileDatabase profileDb = new ProfileDatabase();
         System.out.println("Writing profiles to: " + new File("data/profiles").getAbsolutePath());
 

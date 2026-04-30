@@ -7,11 +7,42 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="owres.stockcomparer.application.controller.MainController">
+
     <HBox spacing="10" alignment="TOP_RIGHT">
-        <ComboBox fx:id="dropdownStock" onAction="#handleDropdownStock" promptText="Select stock" prefWidth="200.0"/>
-        <ComboBox fx:id="dropdownProfile" onAction="#handleDropdownProfile" promptText="Select profile" prefWidth="200.0"/>
+        <VBox.margin>
+            <Insets>
+                <right>10</right>
+                <top>10</top>
+            </Insets>
+        </VBox.margin>
+        <ComboBox fx:id="dropdownStock"
+                  onAction="#handleDropdownStock"
+                  promptText="Select stock"
+                  prefWidth="200.0"/>
+        <ComboBox fx:id="dropdownProfile"
+                  onAction="#handleDropdownProfile"
+                  promptText="Select profile"
+                  prefWidth="200.0"/>
+
+        <Separator orientation="VERTICAL" styleClass="compare-separator"/>
+
+        <Label text="Compare:" styleClass="compare-label"/>
+        <TextField fx:id="compareSymbolField"
+                   promptText="e.g. AAPL"
+                   styleClass="compare-field"/>
+        <Button text="Add"
+                onAction="#handleAddCompare"
+                styleClass="button-add-compare"/>
+        <Button fx:id="clearCompareButton"
+                text="Clear"
+                onAction="#handleClearCompare"
+                disable="true"
+                styleClass="button-clear-compare"/>
     </HBox>
+
     <VBox fx:id="graphContainer" VBox.vgrow="ALWAYS"/>
 </VBox>
